@@ -199,6 +199,14 @@
     "message": "Os backups incluem todos os prompts e pastas, salvos em uma pasta com carimbo de data/hora (formato: backup-YYYYMMDD-HHMMSS)",
     "description": "Backup feature note"
   },
+  "pm_theme_light": {
+    "message": "Mudar para modo claro",
+    "description": "Theme toggle tooltip - switch to light"
+  },
+  "pm_theme_dark": {
+    "message": "Mudar para modo escuro",
+    "description": "Theme toggle tooltip - switch to dark"
+  },
   "extensionVersion": {
     "message": "Versão",
     "description": "Extension version label"
@@ -351,6 +359,18 @@
     "message": "Larga",
     "description": "Wide chat width label"
   },
+  "chatFontSize": {
+    "message": "Tamanho da fonte do chat",
+    "description": "Chat message font size adjustment label"
+  },
+  "chatFontSizeSmall": {
+    "message": "Pequeno",
+    "description": "Small font size label"
+  },
+  "chatFontSizeLarge": {
+    "message": "Grande",
+    "description": "Large font size label"
+  },
   "sidebarWidth": {
     "message": "Largura da barra lateral",
     "description": "Sidebar width adjustment label"
@@ -390,6 +410,10 @@
   "formulaCopyFormatNoDollar": {
     "message": "LaTeX (Sem cifrão)",
     "description": "LaTeX format option without dollar signs"
+  },
+  "formulaCopyFormatNotion": {
+    "message": "Notion ($$ Formato)",
+    "description": "Notion-compatible format with $$ delimiters"
   },
   "folder_filter_current_user": {
     "message": "Isolamento de conta",
@@ -763,6 +787,14 @@
     "message": "Próximo nó",
     "description": "Next timeline node shortcut label"
   },
+  "firstNode": {
+    "message": "Primeiro turno",
+    "description": "First timeline node shortcut label"
+  },
+  "lastNode": {
+    "message": "Último turno",
+    "description": "Last timeline node shortcut label"
+  },
   "shortcutKey": {
     "message": "Tecla",
     "description": "Shortcut key label"
@@ -1022,6 +1054,14 @@
   "ctrlEnterSendHint": {
     "message": "Pressione {modifier}+Enter para enviar mensagens, Enter para nova linha",
     "description": "Modifier+Enter to send feature hint. {modifier} is replaced with ⌘ on macOS and Ctrl on other platforms"
+  },
+  "draftAutoSave": {
+    "message": "Salvamento automático de rascunho",
+    "description": "Toggle label for input draft auto-save feature"
+  },
+  "draftAutoSaveHint": {
+    "message": "Salvar e restaurar automaticamente o texto não enviado ao atualizar ou reabrir uma conversa",
+    "description": "Hint for draft auto-save feature"
   },
   "batch_delete_confirm": {
     "message": "Tem certeza de que deseja excluir {count} conversa(s)? Esta ação não pode ser desfeita.",
@@ -1470,5 +1510,21 @@
   "aiOrgInstructionsBody": {
     "message": "Com base nas conversas e na estrutura de pastas acima, reorganize-as em uma hierarquia lógica de pastas. Gere um arquivo JSON no formato exato abaixo que possa ser importado diretamente na extensão Gemini Voyager (use a estratégia de importação \"Mesclar\"). Mantenha as pastas bem organizadas existentes, crie novas conforme necessário e mova as conversas não classificadas para pastas apropriadas. Cada pasta precisa de um ID único (use uma string aleatória curta) e cada conversa deve manter seu conversationId e url originais.",
     "description": "Corpo das instruções para a IA gerar uma estrutura de pastas importável"
+  },
+  "showMessageTimestamps": {
+    "message": "Mostrar carimbos de data/hora das mensagens",
+    "description": "Exibir carimbo de data/hora para cada mensagem"
+  },
+  "showMessageTimestampsHint": {
+    "message": "Mostrar quando cada mensagem foi enviada",
+    "description": "Dica para o recurso de carimbos de data/hora"
+  },
+  "moveSectionUp": {
+    "message": "Mover para cima",
+    "description": "Tooltip for moving a settings section up in popup"
+  },
+  "moveSectionDown": {
+    "message": "Mover para baixo",
+    "description": "Tooltip for moving a settings section down in popup"
   }
 }

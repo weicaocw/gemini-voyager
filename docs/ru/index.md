@@ -41,6 +41,9 @@ features:
   - icon: 💬
     title: Ответ с цитированием
     details: Цитирование выделенного текста при ответе для эффективного общения.
+  - icon: 🕐
+    title: Временные метки сообщений
+    details: Отметка времени. Автоматическая запись времени отправки каждого сообщения, отслеживание хода разговора с первого взгляда.
   - icon: ↔️
     title: Ширина чата
     details: Шире взгляд. Свободно регулируйте ширину чата для удобного просмотра.
@@ -77,13 +80,16 @@ features:
   - icon: 🔬
     title: Deep Research
     details: Откройте чёрный ящик. Извлеките процессы исследования и ссылки из сессий Deep Research.
+  - icon: 🔤
+    title: Размер шрифта
+    details: Читайте по-своему. Настройте размер шрифта чата для идеального чтения.
+  - icon: 📌
+    title: Автоскрытие боковой панели
+    details: Режим фокуса. Панель автоматически сворачивается при уходе мыши, полное погружение в разговор.
+  - icon: ⌨️
+    title: Поведение отправки
+    details: Enter для новой строки, Ctrl+Enter для отправки. Верните себе контроль над ритмом разговора.
 ---
-
-<div class="vp-doc" style="margin: 2rem auto 0; max-width: 780px; padding: 0 16px;">
-  <div style="background: rgba(234, 179, 8, 0.12); border: 1px solid rgba(234, 179, 8, 0.6); border-radius: 8px; padding: 12px 16px;">
-    <strong>⚠️ Уведомление о переименовании</strong>: В связи с проблемами товарных знаков и авторских прав это расширение официально переименовано в <strong>Voyager</strong>. Однако из-за крайне медленного процесса проверки Chrome Web Store обновление названия не было одобрено в течение 7 дней — расширение временно недоступно в Chrome Web Store.
-  </div>
-</div>
 
 <div class="vp-doc" style="text-align: center; margin: 4rem auto 3rem; max-width: 780px; padding: 0 16px;">
   <h3 style="margin: 0 0 8px; font-weight: 600; font-size: 1.05em;">Каждая установка — это голос доверия</h3>
@@ -93,14 +99,20 @@ features:
     <img src="https://img.shields.io/github/forks/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="GitHub Forks">
     <img src="https://img.shields.io/github/v/release/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="Latest Release">
     <img src="https://img.shields.io/github/downloads/Nagi-ovo/gemini-voyager/total?style=flat-square&logo=github" alt="GitHub Downloads">
-    <img src="https://img.shields.io/chrome-web-store/users/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Chrome Web Store Users">
-    <img src="https://img.shields.io/chrome-web-store/rating/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Chrome Web Store Rating">
+    <img src="https://img.shields.io/chrome-web-store/users/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Chrome Web Store Users">
+    <img src="https://img.shields.io/chrome-web-store/rating/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Chrome Web Store Rating">
     <img src="https://img.shields.io/badge/Edge-✓-0078D7?style=flat-square&logo=microsoft-edge" alt="Edge Add-ons">
     <img src="https://img.shields.io/amo/users/gemini-voyager?style=flat-square&logo=firefox" alt="Firefox Add-ons Users">
     <img src="https://img.shields.io/amo/rating/gemini-voyager?style=flat-square&logo=firefox" alt="Firefox Add-ons Rating">
   </div>
   <div style="margin-top: 16px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px;">
     <a href="https://trendshift.io/repositories/16094" target="_blank"><img src="https://trendshift.io/api/badge/repositories/16094" alt="Nagi-ovo%2Fgemini-voyager | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+  </div>
+</div>
+
+<div class="vp-doc" style="text-align: center; margin: 2.5rem auto 0; max-width: 780px; padding: 0 16px;">
+  <div style="background: var(--vp-c-warning-soft); border: 1px solid var(--vp-c-warning-1); border-radius: 8px; padding: 16px 20px;">
+    <p style="margin: 0; font-size: 0.95em; line-height: 1.6;">Ранее Voyager был удалён из Chrome Web Store из-за спора о товарном знаке, что привело к потере всех накопленных пользователей и отзывов. Теперь мы вернулись и восстанавливаемся с нуля — если Voyager вам полезен, оставить <strong>оценку или отзыв</strong> на странице магазина было бы для нас огромной поддержкой.</p>
   </div>
 </div>
 

@@ -14,7 +14,8 @@ Chaque nœud représente un message. La chronologie visualise le rythme de votre
 - **Coup d'œil** : Survolez pour voir le contenu sans bouger.
 - **Signet** : Appui long sur un nœud pour le marquer d'une **Étoile**. C'est comme un marque-page pour votre cerveau.
 - **Niveaux (Expérimental)** : Clic droit sur un nœud pour définir différents niveaux (1-3) ou réduire les enfants. Parfait pour clarifier les conversations ramifiées.
-- **Clavier** : Naviguez à la vitesse de la pensée. Par défaut `j`/`k`, personnalisable à volonté.
+- **Redimensionner** : Faites glisser le bord intérieur de la timeline pour ajuster sa largeur.
+- **Clavier** : Naviguez à la vitesse de la pensée. Par défaut `j`/`k`, `gg`/`GG` pour aller au premier/dernier tour.
 
 ![Navigation Temporelle](/assets/teaser.png)
 
@@ -28,6 +29,8 @@ Vous ne voulez pas utiliser la souris ? Utilisez votre clavier.
 
 - `k` - Sauter au nœud précédent
 - `j` - Sauter au nœud suivant
+- `gg` - Sauter au premier tour
+- `GG` - Sauter au dernier tour
 
 ### Personnalisez-le
 

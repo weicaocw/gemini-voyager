@@ -24,6 +24,7 @@ import type {
   SyncState,
 } from '@/core/types/sync';
 import { DEFAULT_SYNC_STATE } from '@/core/types/sync';
+import { isBrave } from '@/core/utils/browser';
 import { hashString } from '@/core/utils/hash';
 import { EXTENSION_VERSION } from '@/core/utils/version';
 
@@ -40,6 +41,14 @@ const DRIVE_UPLOAD_BASE = 'https://www.googleapis.com/upload/drive/v3';
 const MAX_RETRIES = 3;
 const INITIAL_RETRY_DELAY_MS = 1000;
 const IDENTITY_TOKEN_TTL_SECONDS = 55 * 60;
+
+function getStringValue(value: unknown): string | null {
+  return typeof value === 'string' ? value : null;
+}
+
+function getNumberValue(value: unknown): number | null {
+  return typeof value === 'number' && Number.isFinite(value) ? value : null;
+}
 
 /**
  * Google Drive Sync Service
@@ -357,9 +366,11 @@ export class GoogleDriveSyncService {
   private async loadCachedToken(): Promise<void> {
     try {
       const result = await chrome.storage.local.get(['gvAccessToken', 'gvTokenExpiry']);
-      if (result.gvAccessToken && result.gvTokenExpiry && result.gvTokenExpiry > Date.now()) {
-        this.accessToken = result.gvAccessToken;
-        this.tokenExpiry = result.gvTokenExpiry;
+      const cachedAccessToken = getStringValue(result.gvAccessToken);
+      const cachedTokenExpiry = getNumberValue(result.gvTokenExpiry);
+      if (cachedAccessToken && cachedTokenExpiry && cachedTokenExpiry > Date.now()) {
+        this.accessToken = cachedAccessToken;
+        this.tokenExpiry = cachedTokenExpiry;
         console.log('[GoogleDriveSyncService] Loaded cached token');
       }
     } catch (error) {
@@ -543,7 +554,10 @@ export class GoogleDriveSyncService {
       return this.accessToken;
     }
 
-    const supportsIdentityApi = !!chrome.identity?.getAuthToken;
+    // Brave supports the identity API but chrome.identity.getAuthToken shows
+    // an "Access blocked" error popup before failing, causing user confusion.
+    // Skip it entirely on Brave and go directly to launchWebAuthFlow.
+    const supportsIdentityApi = !!chrome.identity?.getAuthToken && !isBrave();
     if (supportsIdentityApi) {
       const identityResult = await this.getTokenFromIdentity(interactive);
       if (identityResult.token) {
@@ -847,16 +861,18 @@ export class GoogleDriveSyncService {
       ]);
       this.state = {
         mode: (result.gvSyncMode as SyncMode) || 'disabled',
-        lastSyncTime: result.gvLastSyncTime || null,
-        lastUploadTime: result.gvLastUploadTime || null,
-        lastSyncTimeAIStudio: result.gvLastSyncTimeAIStudio || null,
-        lastUploadTimeAIStudio: result.gvLastUploadTimeAIStudio || null,
-        error: result.gvSyncError || null,
+        lastSyncTime: getNumberValue(result.gvLastSyncTime),
+        lastUploadTime: getNumberValue(result.gvLastUploadTime),
+        lastSyncTimeAIStudio: getNumberValue(result.gvLastSyncTimeAIStudio),
+        lastUploadTimeAIStudio: getNumberValue(result.gvLastUploadTimeAIStudio),
+        error: getStringValue(result.gvSyncError),
         isSyncing: false,
         isAuthenticated: false,
       };
-      const token = await this.getAuthToken(false);
-      this.state.isAuthenticated = !!token;
+      if (this.state.mode !== 'disabled') {
+        const token = await this.getAuthToken(false);
+        this.state.isAuthenticated = !!token;
+      }
     } catch (error) {
       console.error('[GoogleDriveSyncService] Failed to load state:', error);
     }

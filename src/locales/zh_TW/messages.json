@@ -199,6 +199,14 @@
     "message": "備份將包含所有提示詞和資料夾，並儲存在帶時間戳記的資料夾中（格式：backup-YYYYMMDD-HHMMSS）",
     "description": "備份功能說明"
   },
+  "pm_theme_light": {
+    "message": "切換至淺色模式",
+    "description": "Theme toggle tooltip - switch to light"
+  },
+  "pm_theme_dark": {
+    "message": "切換至深色模式",
+    "description": "Theme toggle tooltip - switch to dark"
+  },
   "extensionVersion": {
     "message": "版本",
     "description": "擴充功能版本標籤"
@@ -311,6 +319,18 @@
     "message": "寬",
     "description": "寬對話區域寬度標籤"
   },
+  "chatFontSize": {
+    "message": "對話字體大小",
+    "description": "對話訊息字體大小調整標籤"
+  },
+  "chatFontSizeSmall": {
+    "message": "小",
+    "description": "小字體大小標籤"
+  },
+  "chatFontSizeLarge": {
+    "message": "大",
+    "description": "大字體大小標籤"
+  },
   "sidebarWidth": {
     "message": "側邊欄寬度",
     "description": "側邊欄寬度調節標籤"
@@ -350,6 +370,10 @@
   "formulaCopyFormatNoDollar": {
     "message": "LaTeX (純文字，無 $ 符號)",
     "description": "LaTeX 格式選項，無美元符號"
+  },
+  "formulaCopyFormatNotion": {
+    "message": "Notion (雙$格式)",
+    "description": "Notion 相容格式，使用 $$ 分隔符"
   },
   "folder_filter_current_user": {
     "message": "帳號隔離模式",
@@ -723,6 +747,14 @@
     "message": "下一個節點",
     "description": "下一個時間軸節點快速鍵標籤"
   },
+  "firstNode": {
+    "message": "第一輪",
+    "description": "第一個時間軸節點快速鍵標籤"
+  },
+  "lastNode": {
+    "message": "最後一輪",
+    "description": "最後一個時間軸節點快速鍵標籤"
+  },
   "shortcutKey": {
     "message": "按鍵",
     "description": "快速鍵按鍵標籤"
@@ -982,6 +1014,14 @@
   "ctrlEnterSendHint": {
     "message": "按 {modifier}+Enter 傳送訊息，Enter 鍵僅換行",
     "description": "Modifier+Enter 傳送功能提示。{modifier} 在 macOS 上替換為 ⌘，其他平台替換為 Ctrl"
+  },
+  "draftAutoSave": {
+    "message": "草稿自動儲存",
+    "description": "Toggle label for input draft auto-save feature"
+  },
+  "draftAutoSaveHint": {
+    "message": "重新整理頁面或重新開啟對話時，自動儲存和恢復未送出的輸入內容",
+    "description": "Hint for draft auto-save feature"
   },
   "batch_delete_confirm": {
     "message": "確定要刪除 {count} 個對話嗎？此操作無法復原。",
@@ -1458,5 +1498,21 @@
   "aiOrgInstructionsBody": {
     "message": "根據以上對話和資料夾結構，請將它們重新整理為合理的資料夾層級。輸出一個使用以下格式的 JSON 檔案，可以直接匯入到 Gemini Voyager 擴充功能中（使用「合併」匯入策略）。保留已有的合理資料夾，根據需要建立新資料夾，將未歸類的對話移入合適的資料夾。每個資料夾需要一個唯一 ID（使用短隨機字串），每個對話必須保留其原始的 conversationId 和 url。",
     "description": "AI 生成可匯入資料夾結構的指示正文"
+  },
+  "showMessageTimestamps": {
+    "message": "顯示訊息時間",
+    "description": "顯示每則訊息的時間戳"
+  },
+  "showMessageTimestampsHint": {
+    "message": "顯示每則訊息的發送時間",
+    "description": "訊息時間戳功能提示"
+  },
+  "moveSectionUp": {
+    "message": "上移",
+    "description": "Tooltip for moving a settings section up in popup"
+  },
+  "moveSectionDown": {
+    "message": "下移",
+    "description": "Tooltip for moving a settings section down in popup"
   }
 }

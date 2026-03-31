@@ -19,8 +19,8 @@
     <img src="https://img.shields.io/github/forks/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="GitHub forks">
     <img src="https://img.shields.io/github/v/release/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="Latest version">
     <img src="https://img.shields.io/github/downloads/Nagi-ovo/gemini-voyager/total?style=flat-square&logo=github" alt="GitHub downloads">
-    <img src="https://img.shields.io/chrome-web-store/users/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Chrome Web Store users">
-    <img src="https://img.shields.io/chrome-web-store/rating/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Chrome Web Store rating">
+    <img src="https://img.shields.io/chrome-web-store/users/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Chrome Web Store users">
+    <img src="https://img.shields.io/chrome-web-store/rating/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Chrome Web Store rating">
     <img src="https://img.shields.io/amo/users/gemini-voyager?style=flat-square&logo=firefox" alt="Firefox Add-ons users">
     <img src="https://img.shields.io/amo/rating/gemini-voyager?style=flat-square&logo=firefox" alt="Firefox Add-ons rating">
   </p>
@@ -58,11 +58,11 @@
   <b>🎉 Highly recommended by top tech KOLs and the community!</b>
 </p>
 
-> [!IMPORTANT]
-> **Name Change Notice**: Due to trademark and copyright concerns, this extension has been officially renamed to **Voyager**. However, due to the Chrome Web Store's extremely slow review process, the name change was not approved within 7 days — it is temporarily unavailable on the Chrome Web Store under the new name.
-
 > [!NOTE]
 > If Voyager helps you, feel free to share it on X, Reddit, YouTube, Threads, etc. Every share helps more people discover the project and improve the Gemini experience. Thanks.
+
+> [!IMPORTANT]
+> Voyager was previously taken down from the Chrome Web Store due to a trademark dispute, which resulted in the loss of all accumulated users and reviews. We're now back and rebuilding from scratch — if you find Voyager useful, leaving a rating or review on the store page would mean the world to us.
 
 ---
 
@@ -124,7 +124,7 @@ That's why we built **Voyager**. It's not just a tool; it's a companion that hel
 > ⚠️ Note: Prompt Manager is the only feature that supports Gemini for Enterprise.
 
 <div align="center">
-  <a href="https://chromewebstore.google.com/detail/kjdpnimcnfinmilocccippmododhceol?utm_source=github&utm_medium=readme&utm_campaign=organic_growth&utm_content=en" target="_blank">
+  <a href="https://chromewebstore.google.com/detail/iifacdnjakkhjjiengaffnegbndgingi?utm_source=github&utm_medium=readme&utm_campaign=organic_growth&utm_content=en" target="_blank">
     <img src="https://img.shields.io/badge/Chrome%20Web%20Store-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Chrome Web Store" height="36">
   </a>
   &nbsp;&nbsp;
@@ -145,7 +145,7 @@ That's why we built **Voyager**. It's not just a tool; it's a companion that hel
   <sub><b>Chrome Web Store</b> also works on Edge, Opera, Brave, Vivaldi, Arc, and other Chromium browsers.</sub>
 </p>
 
-> **Store Status:** Chrome ⏳ (name update pending review) · Firefox ✅ · Edge ✅ · Safari ✅
+> **Store Status:** Chrome ✅ · Firefox ✅ · Edge ✅ · Safari ✅
 
 For **manual installation** or **development builds**, please refer to the [Installation Guide](https://voyager.nagi.fun/en/guide/installation).
 
@@ -280,6 +280,8 @@ Special thanks to all contributors for their contributions to Voyager ❤️
 - **[ChatGPT Conversation Timeline](https://github.com/Reborn14/chatgpt-conversation-timeline)** - The original timeline navigation extension for ChatGPT that inspired this project: Voyager adapted the timeline concept for Gemini and added extensive new features including folder management, prompt vault, and chat export.
 
 - **[Ophel Atlas](https://github.com/urzeye/ophel)** - A browser extension that transforms AI conversations into organized, searchable documents with auto-generated outlines, conversation management, and prompt libraries across multiple AI platforms.
+
+- **[Better_Doubao](https://github.com/Rex16200513/Better_Doubao)** - An advanced browser extension supercharging Doubao with enhanced navigation, organization, and productivity features.
 
 ---
 

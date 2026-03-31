@@ -41,6 +41,9 @@ features:
   - icon: 💬
     title: الرد مع اقتباس
     details: حدد للاقتباس. ردود مدركة للسياق لتواصل فعال.
+  - icon: 🕐
+    title: طابع الوقت
+    details: علامة زمنية. يسجل تلقائياً وقت إرسال كل رسالة، تتبع مسار المحادثة بنظرة واحدة.
   - icon: ↔️
     title: عرض الدردشة
     details: وسّع رؤيتك. اضبط عرض الدردشة بحرية لتجربة مشاهدة أفضل.
@@ -77,13 +80,16 @@ features:
   - icon: 🔬
     title: البحث العميق
     details: افتح الصندوق الأسود. استخرج عمليات التفكير وروابط البحث من جلسات Deep Research.
+  - icon: 🔤
+    title: حجم الخط
+    details: اقرأ بطريقتك. اضبط حجم خط الدردشة لتجربة قراءة مثالية.
+  - icon: 📌
+    title: إخفاء الشريط الجانبي تلقائياً
+    details: وضع التركيز. ينطوي الشريط الجانبي تلقائياً عندما يغادر الماوس، انغمس بالكامل في المحادثة.
+  - icon: ⌨️
+    title: سلوك الإرسال
+    details: Enter لسطر جديد، Ctrl+Enter للإرسال. تحكم في إيقاع محادثاتك بنفسك.
 ---
-
-<div class="vp-doc" style="margin: 2rem auto 0; max-width: 780px; padding: 0 16px;">
-  <div style="background: rgba(234, 179, 8, 0.12); border: 1px solid rgba(234, 179, 8, 0.6); border-radius: 8px; padding: 12px 16px;" dir="rtl">
-    <strong>⚠️ إشعار تغيير الاسم</strong>: بسبب مخاوف تتعلق بالعلامات التجارية وحقوق النشر، تم تغيير اسم هذا الامتداد رسمياً إلى <strong>Voyager</strong>. ومع ذلك، بسبب البطء الشديد في عملية مراجعة Chrome Web Store، لم يتم الموافقة على تغيير الاسم خلال 7 أيام — وهو غير متاح مؤقتاً على Chrome Web Store.
-  </div>
-</div>
 
 <div class="vp-doc" style="text-align: center; margin: 4rem auto 3rem; max-width: 780px; padding: 0 16px;">
   <h3 style="margin: 0 0 8px; font-weight: 600; font-size: 1.05em;">كل تثبيت هو تصويت بالثقة</h3>
@@ -93,14 +99,20 @@ features:
     <img src="https://img.shields.io/github/forks/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="تشعبات GitHub">
     <img src="https://img.shields.io/github/v/release/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="أحدث إصدار">
     <img src="https://img.shields.io/github/downloads/Nagi-ovo/gemini-voyager/total?style=flat-square&logo=github" alt="تنزيلات GitHub">
-    <img src="https://img.shields.io/chrome-web-store/users/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="مستخدمو متجر Chrome الإلكتروني">
-    <img src="https://img.shields.io/chrome-web-store/rating/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="تقييم متجر Chrome الإلكتروني">
+    <img src="https://img.shields.io/chrome-web-store/users/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="مستخدمو متجر Chrome الإلكتروني">
+    <img src="https://img.shields.io/chrome-web-store/rating/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="تقييم متجر Chrome الإلكتروني">
     <img src="https://img.shields.io/badge/Edge-✓-0078D7?style=flat-square&logo=microsoft-edge" alt="إضافات Edge">
     <img src="https://img.shields.io/amo/users/gemini-voyager?style=flat-square&logo=firefox" alt="مستخدمو إضافات Firefox">
     <img src="https://img.shields.io/amo/rating/gemini-voyager?style=flat-square&logo=firefox" alt="تقييم إضافات Firefox">
   </div>
   <div style="margin-top: 16px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px;">
     <a href="https://trendshift.io/repositories/16094" target="_blank"><img src="https://trendshift.io/api/badge/repositories/16094" alt="Nagi-ovo%2Fgemini-voyager | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+  </div>
+</div>
+
+<div class="vp-doc" style="text-align: center; margin: 2.5rem auto 0; max-width: 780px; padding: 0 16px;">
+  <div style="background: var(--vp-c-warning-soft); border: 1px solid var(--vp-c-warning-1); border-radius: 8px; padding: 16px 20px;">
+    <p style="margin: 0; font-size: 0.95em; line-height: 1.6;">تمت إزالة Voyager سابقاً من متجر Chrome الإلكتروني بسبب نزاع على العلامة التجارية، مما أدى إلى فقدان جميع المستخدمين والمراجعات المتراكمة. لقد عدنا الآن ونعيد البناء من الصفر — إذا وجدت Voyager مفيداً، فإن ترك <strong>تقييم أو مراجعة</strong> على صفحة المتجر سيعني لنا الكثير.</p>
   </div>
 </div>
 

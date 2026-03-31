@@ -48,6 +48,7 @@ export const StorageKeys = {
 
   // UI customization
   CHAT_WIDTH: 'geminiChatWidth',
+  CHAT_FONT_SIZE: 'gvChatFontSize',
 
   // Prompt Manager
   PROMPT_ITEMS: 'gvPromptItems',
@@ -55,6 +56,7 @@ export const StorageKeys = {
   PROMPT_PANEL_POSITION: 'gvPromptPanelPosition',
   PROMPT_TRIGGER_POSITION: 'gvPromptTriggerPosition',
   PROMPT_CUSTOM_WEBSITES: 'gvPromptCustomWebsites',
+  PROMPT_THEME: 'gvPromptTheme',
 
   // Global settings
   LANGUAGE: 'language',
@@ -64,6 +66,7 @@ export const StorageKeys = {
   CTRL_ENTER_SEND: 'gvCtrlEnterSend',
   INPUT_COLLAPSE_ENABLED: 'gvInputCollapseEnabled',
   INPUT_COLLAPSE_WHEN_NOT_EMPTY: 'gvInputCollapseWhenNotEmpty',
+  DRAFT_AUTO_SAVE: 'gvDraftAutoSave',
 
   // Default Model
   DEFAULT_MODEL: 'gvDefaultModel',
@@ -100,6 +103,13 @@ export const StorageKeys = {
 
   // AI Studio master toggle
   GV_AISTUDIO_ENABLED: 'gvAIStudioEnabled',
+
+  // Message timestamps
+  GV_SHOW_MESSAGE_TIMESTAMPS: 'gvShowMessageTimestamps',
+  GV_MESSAGE_TIMESTAMPS: 'gvMessageTimestamps',
+
+  // Popup section order
+  GV_POPUP_SECTION_ORDER: 'gvPopupSectionOrder',
 } as const;
 
 export type StorageKey = (typeof StorageKeys)[keyof typeof StorageKeys];

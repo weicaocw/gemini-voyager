@@ -14,7 +14,8 @@ Each node represents a message. The timeline visualizes the rhythm of your dialo
 - **Peek**: Hover to see what's inside without moving.
 - **Bookmark**: Long-press a node to **Star** it. It's like a bookmark for your brain.
 - **Levels (Experimental)**: Right-click a node to set various levels (1-3) or collapse children. Perfect for making branched conversations clear.
-- **Keyboard**: Navigate at the speed of thought. Default `j`/`k`, customize to anything.
+- **Resize**: Drag the inner edge of the timeline to adjust its width.
+- **Keyboard**: Navigate at the speed of thought. Default `j`/`k`, `gg`/`GG` to jump to first/last turn.
 
 ![Timeline Navigation](/assets/teaser.png)
 
@@ -28,6 +29,8 @@ Don't want to use the mouse? Use your keyboard.
 
 - `k` - Jump to previous node
 - `j` - Jump to next node
+- `gg` - Jump to first turn
+- `GG` - Jump to last turn
 
 ### Customize It
 

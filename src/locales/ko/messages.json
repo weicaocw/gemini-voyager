@@ -199,6 +199,14 @@
     "message": "백업에는 모든 프롬프트와 폴더가 포함되며, 타임스탬프 폴더 형식 (backup-YYYYMMDD-HHMMSS) 으로 저장됩니다",
     "description": "Backup feature note"
   },
+  "pm_theme_light": {
+    "message": "라이트 모드로 전환",
+    "description": "Theme toggle tooltip - switch to light"
+  },
+  "pm_theme_dark": {
+    "message": "다크 모드로 전환",
+    "description": "Theme toggle tooltip - switch to dark"
+  },
   "extensionVersion": {
     "message": "버전",
     "description": "Extension version label"
@@ -351,6 +359,18 @@
     "message": "넓게",
     "description": "Wide chat width label"
   },
+  "chatFontSize": {
+    "message": "대화 글꼴 크기",
+    "description": "Chat message font size adjustment label"
+  },
+  "chatFontSizeSmall": {
+    "message": "작게",
+    "description": "Small font size label"
+  },
+  "chatFontSizeLarge": {
+    "message": "크게",
+    "description": "Large font size label"
+  },
   "sidebarWidth": {
     "message": "사이드바 너비",
     "description": "Sidebar width adjustment label"
@@ -390,6 +410,10 @@
   "formulaCopyFormatNoDollar": {
     "message": "LaTeX (달러 기호 없음)",
     "description": "LaTeX format option without dollar signs"
+  },
+  "formulaCopyFormatNotion": {
+    "message": "Notion ($$ 포맷)",
+    "description": "Notion-compatible format with $$ delimiters"
   },
   "folder_filter_current_user": {
     "message": "계정 분리",
@@ -763,6 +787,14 @@
     "message": "다음 노드",
     "description": "Next timeline node shortcut label"
   },
+  "firstNode": {
+    "message": "첫 번째 턴",
+    "description": "First timeline node shortcut label"
+  },
+  "lastNode": {
+    "message": "마지막 턴",
+    "description": "Last timeline node shortcut label"
+  },
   "shortcutKey": {
     "message": "키",
     "description": "Shortcut key label"
@@ -1022,6 +1054,14 @@
   "ctrlEnterSendHint": {
     "message": "{modifier}+Enter 를 눌러 메시지를 전송하고, Enter 로 줄바꿈을 합니다",
     "description": "Modifier+Enter to send feature hint. {modifier} is replaced with ⌘ on macOS and Ctrl on other platforms"
+  },
+  "draftAutoSave": {
+    "message": "임시 저장 자동 저장",
+    "description": "Toggle label for input draft auto-save feature"
+  },
+  "draftAutoSaveHint": {
+    "message": "페이지를 새로고침하거나 대화를 다시 열 때 전송되지 않은 입력 내용을 자동으로 저장하고 복원합니다",
+    "description": "Hint for draft auto-save feature"
   },
   "batch_delete_confirm": {
     "message": "{count}개의 대화를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
@@ -1458,5 +1498,21 @@
   "aiOrgInstructionsBody": {
     "message": "위의 대화와 폴더 구조를 기반으로 논리적인 폴더 계층으로 재정리해주세요. 아래 형식의 JSON 파일을 출력하여 Gemini Voyager 확장 프로그램에 직접 가져올 수 있도록 하세요(\"병합\" 가져오기 전략 사용). 기존의 잘 정리된 폴더는 유지하고, 필요에 따라 새 폴더를 만들고, 분류되지 않은 대화를 적절한 폴더로 이동하세요. 각 폴더에는 고유한 ID(짧은 랜덤 문자열)가 필요하며, 각 대화는 원래의 conversationId와 url을 유지해야 합니다.",
     "description": "AI가 가져올 수 있는 폴더 구조를 생성하기 위한 지시사항 본문"
+  },
+  "showMessageTimestamps": {
+    "message": "메시지 타임스탬프 표시",
+    "description": "각 메시지의 타임스탬프 표시"
+  },
+  "showMessageTimestampsHint": {
+    "message": "각 메시지가 전송된 시간을 표시합니다",
+    "description": "메시지 타임스탬프 기능 힌트"
+  },
+  "moveSectionUp": {
+    "message": "위로 이동",
+    "description": "Tooltip for moving a settings section up in popup"
+  },
+  "moveSectionDown": {
+    "message": "아래로 이동",
+    "description": "Tooltip for moving a settings section down in popup"
   }
 }

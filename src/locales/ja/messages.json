@@ -199,6 +199,14 @@
     "message": "すべてのプロンプトとフォルダが含まれ、タイムスタンプ付きのフォルダに保存されます (形式：backup-YYYYMMDD-HHMMSS)",
     "description": "Backup feature note"
   },
+  "pm_theme_light": {
+    "message": "ライトモードに切替",
+    "description": "Theme toggle tooltip - switch to light"
+  },
+  "pm_theme_dark": {
+    "message": "ダークモードに切替",
+    "description": "Theme toggle tooltip - switch to dark"
+  },
   "extensionVersion": {
     "message": "バージョン",
     "description": "Extension version label"
@@ -351,6 +359,18 @@
     "message": "広い",
     "description": "Wide chat width label"
   },
+  "chatFontSize": {
+    "message": "チャットのフォントサイズ",
+    "description": "Chat message font size adjustment label"
+  },
+  "chatFontSizeSmall": {
+    "message": "小",
+    "description": "Small font size label"
+  },
+  "chatFontSizeLarge": {
+    "message": "大",
+    "description": "Large font size label"
+  },
   "sidebarWidth": {
     "message": "サイドバーの幅",
     "description": "Sidebar width adjustment label"
@@ -390,6 +410,10 @@
   "formulaCopyFormatNoDollar": {
     "message": "LaTeX (ドル記号なし)",
     "description": "LaTeX format option without dollar signs"
+  },
+  "formulaCopyFormatNotion": {
+    "message": "Notion ($$ 形式)",
+    "description": "Notion-compatible format with $$ delimiters"
   },
   "folder_filter_current_user": {
     "message": "アカウント隔離",
@@ -763,6 +787,14 @@
     "message": "次のノードへ",
     "description": "Next timeline node shortcut label"
   },
+  "firstNode": {
+    "message": "最初のターンへ",
+    "description": "First timeline node shortcut label"
+  },
+  "lastNode": {
+    "message": "最後のターンへ",
+    "description": "Last timeline node shortcut label"
+  },
   "shortcutKey": {
     "message": "キー",
     "description": "Shortcut key label"
@@ -1022,6 +1054,14 @@
   "ctrlEnterSendHint": {
     "message": "{modifier}+Enter でメッセージを送信、Enter で改行",
     "description": "Modifier+Enter to send feature hint. {modifier} is replaced with ⌘ on macOS and Ctrl on other platforms"
+  },
+  "draftAutoSave": {
+    "message": "下書きの自動保存",
+    "description": "Toggle label for input draft auto-save feature"
+  },
+  "draftAutoSaveHint": {
+    "message": "ページの更新や会話の再表示時に、未送信の入力内容を自動的に保存・復元します",
+    "description": "Hint for draft auto-save feature"
   },
   "batch_delete_confirm": {
     "message": "{count} 件の会話を削除してもよろしいですか？この操作は取り消せません。",
@@ -1464,5 +1504,21 @@
   "aiOrgInstructionsBody": {
     "message": "上記の会話とフォルダ構造に基づいて、論理的なフォルダ階層に再整理してください。以下の形式の JSON ファイルを出力し、Gemini Voyager 拡張機能に直接インポートできるようにしてください（「マージ」インポート戦略を使用）。既存の整理済みフォルダはそのまま維持し、必要に応じて新しいフォルダを作成し、未分類の会話を適切なフォルダに移動してください。各フォルダには一意の ID（短いランダム文字列）が必要で、各会話は元の conversationId と url を保持する必要があります。",
     "description": "AI がインポート可能なフォルダ構造を生成するための指示本文"
+  },
+  "showMessageTimestamps": {
+    "message": "メッセージのタイムスタンプを表示",
+    "description": "各メッセージのタイムスタンプを表示"
+  },
+  "showMessageTimestampsHint": {
+    "message": "各メッセージの送信時刻を表示します",
+    "description": "メッセージタイムスタンプ機能のヒント"
+  },
+  "moveSectionUp": {
+    "message": "上に移動",
+    "description": "Tooltip for moving a settings section up in popup"
+  },
+  "moveSectionDown": {
+    "message": "下に移動",
+    "description": "Tooltip for moving a settings section down in popup"
   }
 }

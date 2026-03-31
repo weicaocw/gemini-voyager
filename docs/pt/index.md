@@ -41,6 +41,9 @@ features:
   - icon: 💬
     title: Resposta com Citação
     details: Selecione para citar. Respostas contextualizadas para uma comunicação eficiente.
+  - icon: 🕐
+    title: Carimbo de Data/Hora
+    details: Marcador temporal. Regista automaticamente a hora de envio de cada mensagem, rastreie o fio da conversa num relance.
   - icon: ↔️
     title: Largura do chat
     details: Amplie sua visão. Ajuste livremente a largura do chat para uma melhor experiência de visualização.
@@ -77,13 +80,16 @@ features:
   - icon: 🔬
     title: Deep Research
     details: Abra a caixa preta. Extraia processos de pesquisa e links das sessões de Deep Research.
+  - icon: 🔤
+    title: Tamanho da Fonte
+    details: Leia do seu jeito. Ajuste o tamanho da fonte do chat para uma experiência de leitura perfeita.
+  - icon: 📌
+    title: Ocultar Painel Automaticamente
+    details: Modo foco. O painel se recolhe automaticamente quando o rato sai, imersão total na conversa.
+  - icon: ⌨️
+    title: Comportamento de Envio
+    details: Enter para nova linha, Ctrl+Enter para enviar. Retome o controlo do ritmo da conversa.
 ---
-
-<div class="vp-doc" style="margin: 2rem auto 0; max-width: 780px; padding: 0 16px;">
-  <div style="background: rgba(234, 179, 8, 0.12); border: 1px solid rgba(234, 179, 8, 0.6); border-radius: 8px; padding: 12px 16px;">
-    <strong>⚠️ Aviso de mudança de nome</strong>: Devido a problemas de marcas registradas e direitos autorais, esta extensão foi oficialmente renomeada para <strong>Voyager</strong>. No entanto, devido ao processo extremamente lento de revisão do Chrome Web Store, a mudança de nome não foi aprovada em 7 dias — está temporariamente indisponível no Chrome Web Store.
-  </div>
-</div>
 
 <div class="vp-doc" style="text-align: center; margin: 4rem auto 3rem; max-width: 780px; padding: 0 16px;">
   <h3 style="margin: 0 0 8px; font-weight: 600; font-size: 1.05em;">Cada instalação é um voto de confiança</h3>
@@ -93,14 +99,20 @@ features:
     <img src="https://img.shields.io/github/forks/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="Forks GitHub">
     <img src="https://img.shields.io/github/v/release/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="Último Lançamento">
     <img src="https://img.shields.io/github/downloads/Nagi-ovo/gemini-voyager/total?style=flat-square&logo=github" alt="Downloads GitHub">
-    <img src="https://img.shields.io/chrome-web-store/users/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Utilizadores Chrome Web Store">
-    <img src="https://img.shields.io/chrome-web-store/rating/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Avaliação Chrome Web Store">
+    <img src="https://img.shields.io/chrome-web-store/users/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Utilizadores Chrome Web Store">
+    <img src="https://img.shields.io/chrome-web-store/rating/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Avaliação Chrome Web Store">
     <img src="https://img.shields.io/badge/Edge-✓-0078D7?style=flat-square&logo=microsoft-edge" alt="Edge Add-ons">
     <img src="https://img.shields.io/amo/users/gemini-voyager?style=flat-square&logo=firefox" alt="Utilizadores Firefox Add-ons">
     <img src="https://img.shields.io/amo/rating/gemini-voyager?style=flat-square&logo=firefox" alt="Avaliação Firefox Add-ons">
   </div>
   <div style="margin-top: 16px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px;">
     <a href="https://trendshift.io/repositories/16094" target="_blank"><img src="https://trendshift.io/api/badge/repositories/16094" alt="Nagi-ovo%2Fgemini-voyager | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+  </div>
+</div>
+
+<div class="vp-doc" style="text-align: center; margin: 2.5rem auto 0; max-width: 780px; padding: 0 16px;">
+  <div style="background: var(--vp-c-warning-soft); border: 1px solid var(--vp-c-warning-1); border-radius: 8px; padding: 16px 20px;">
+    <p style="margin: 0; font-size: 0.95em; line-height: 1.6;">O Voyager foi anteriormente removido da Chrome Web Store devido a uma disputa de marca registrada, resultando na perda de todos os utilizadores e avaliações acumulados. Estamos de volta e a reconstruir do zero — se o Voyager lhe for útil, deixar uma <strong>avaliação</strong> na página da loja significaria muito para nós.</p>
   </div>
 </div>
 

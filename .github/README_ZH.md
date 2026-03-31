@@ -19,8 +19,8 @@
     <img src="https://img.shields.io/github/forks/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="GitHub Fork">
     <img src="https://img.shields.io/github/v/release/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="最新版本">
     <img src="https://img.shields.io/github/downloads/Nagi-ovo/gemini-voyager/total?style=flat-square&logo=github" alt="GitHub 下载量">
-    <img src="https://img.shields.io/chrome-web-store/users/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Chrome 商店用户数">
-    <img src="https://img.shields.io/chrome-web-store/rating/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Chrome 商店评分">
+    <img src="https://img.shields.io/chrome-web-store/users/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Chrome 商店用户数">
+    <img src="https://img.shields.io/chrome-web-store/rating/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Chrome 商店评分">
     <img src="https://img.shields.io/amo/users/gemini-voyager?style=flat-square&logo=firefox" alt="Firefox 商店用户数">
     <img src="https://img.shields.io/amo/rating/gemini-voyager?style=flat-square&logo=firefox" alt="Firefox 商店评分">
   </p>
@@ -58,11 +58,11 @@
   <b>🎉 感谢知名科技圈大 V 与社区的强烈推荐！</b>
 </p>
 
-> [!IMPORTANT]
-> **改名公告**：由于商标版权问题，本插件已正式改名为 **Voyager**。但由于谷歌插件商店审核速度奇慢，七天内未能完成名称更新审核，暂时无法在 Chrome Web Store 使用。
-
 > [!NOTE]
 > 如果 Voyager 帮到了你，欢迎分享到 X、即刻、小红书、Linux.do、V2EX 等等，也欢迎推荐给海外 KOL。每一次分享都能让更多人看到这个项目，从而改善 Gemini 的使用体验。谢谢。
+
+> [!IMPORTANT]
+> Voyager 曾因商标争议被 Chrome Web Store 下架，所有积累的用户和评价都归零了。现在我们已重新上架，正在从头开始重建——如果你觉得 Voyager 好用，去商店页面留个评分或评价，对我们来说意义重大。
 
 ---
 
@@ -124,7 +124,7 @@
 > ⚠️ 注意：提示词管理器是唯一支持 Gemini 企业版的功能。
 
 <div align="center">
-  <a href="https://chromewebstore.google.com/detail/kjdpnimcnfinmilocccippmododhceol?utm_source=github&utm_medium=readme&utm_campaign=organic_growth&utm_content=zh" target="_blank">
+  <a href="https://chromewebstore.google.com/detail/iifacdnjakkhjjiengaffnegbndgingi?utm_source=github&utm_medium=readme&utm_campaign=organic_growth&utm_content=zh" target="_blank">
     <img src="https://img.shields.io/badge/Chrome%20应用商店-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Chrome 应用商店" height="36">
   </a>
   &nbsp;&nbsp;
@@ -280,6 +280,8 @@ bun run build:all
 - **[ChatGPT Conversation Timeline](https://github.com/Reborn14/chatgpt-conversation-timeline)** - 本项目的灵感来源。
 
 - **[Ophel Atlas](https://github.com/urzeye/ophel)** - 将 AI 对话转化为有组织、可搜索文档的浏览器扩展，支持自动生成大纲、对话管理和提示词库，兼容多个 AI 平台。
+
+- **[Better_Doubao](https://github.com/Rex16200513/Better_Doubao)** - 为豆包提供增强导航、组织管理和生产力功能的浏览器扩展。
 
 ---
 

@@ -1,22 +1,23 @@
 import { keyboardShortcutService } from '@/core/services/KeyboardShortcutService';
-import { StorageKeys } from '@/core/types/common';
+import { storageService } from '@/core/services/StorageService';
+import { StorageKeys, type TurnId } from '@/core/types/common';
+import {
+  buildConversationIdFromUrl,
+  buildLegacyConversationIdFromUrl,
+  buildRouteConversationIdFromUrl,
+  extractConversationIdFromUrl,
+} from '@/core/utils/conversationIdentity';
+import { hashString } from '@/core/utils/hash';
 import { GV_RTL_CLASS, applyRTLClass } from '@/core/utils/rtl';
 
 import { getTranslationSync, initI18n } from '../../../utils/i18n';
+import { TimestampService } from '../timestamp/TimestampService';
 import { eventBus } from './EventBus';
 import { StarredMessagesService } from './StarredMessagesService';
 import { TimelinePreviewPanel } from './TimelinePreviewPanel';
+import { findMatchingStarredMessages } from './starredLookup';
 import type { StarredMessage, StarredMessagesData } from './starredTypes';
 import type { DotElement, MarkerLevel } from './types';
-
-function hashString(input: string): string {
-  let h = 2166136261 >>> 0;
-  for (let i = 0; i < input.length; i++) {
-    h ^= input.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return (h >>> 0).toString(36);
-}
 
 /** Accessibility prefixes injected by Gemini's DOM that should be stripped from previews effectively globally. */
 const TURN_LABEL_PREFIXES =
@@ -53,6 +54,10 @@ type ExtGlobal = typeof globalThis & {
     };
   };
 };
+
+interface TimelineManagerOptions {
+  previousUrl?: string | null;
+}
 
 export class TimelineManager {
   private scrollContainer: HTMLElement | null = null;
@@ -105,6 +110,7 @@ export class TimelineManager {
   private runnerRing: HTMLElement | null = null;
   private flowAnimating = false;
   private tooltipHideTimer: number | null = null;
+  private tooltipDotId: string | null = null;
   private measureEl: HTMLElement | null = null;
   private measureCanvas: HTMLCanvasElement | null = null;
   private measureCtx: CanvasRenderingContext2D | null = null;
@@ -189,6 +195,20 @@ export class TimelineManager {
   private isNavigating: boolean = false;
   private previewPanel: TimelinePreviewPanel | null = null;
   private rtl = false;
+  private timestampService: TimestampService | null = null;
+  private showMessageTimestampsEnabled = false;
+  private readonly initialTimestampSnapshotDelay = 800;
+  private readonly draftTimestampAdoptionWindowMs = 5 * 60 * 1000;
+  private timestampTrackingReady = false;
+  private timestampStartupTimer: number | null = null;
+  private seenTurnIds: Set<string> = new Set();
+  private pendingDraftTimestampSourceConversationId: string | null;
+
+  constructor(private readonly options: TimelineManagerOptions = {}) {
+    this.pendingDraftTimestampSourceConversationId = this.computeDraftTimestampSourceConversationId(
+      options.previousUrl ?? null,
+    );
+  }
 
   async init(): Promise<void> {
     await initI18n();
@@ -202,6 +222,10 @@ export class TimelineManager {
     await this.syncStarredFromService();
     this.loadMarkerLevels();
     this.loadCollapsedMarkers();
+    // Initialize timestamp service
+    this.timestampService = new TimestampService();
+    await this.timestampService.initialize();
+    await this.loadMessageTimestampsEnabledSetting();
     // Ensure initial render even when Gemini DOM is already stable (no mutations after observer attaches)
     this.recalculateAndRenderMarkers();
     // Handle URL hash for starred message navigation
@@ -457,8 +481,15 @@ export class TimelineManager {
   }
 
   private computeConversationId(): string {
-    const raw = `${location.host}${location.pathname}${location.search}`;
-    return `gemini:${hashString(raw)}`;
+    return buildConversationIdFromUrl(window.location.href);
+  }
+
+  private computeLegacyConversationId(): string {
+    return buildLegacyConversationIdFromUrl(window.location.href);
+  }
+
+  private computeRouteConversationId(): string {
+    return buildRouteConversationIdFromUrl(window.location.href);
   }
 
   /**
@@ -466,6 +497,16 @@ export class TimelineManager {
    */
   private getStarsStorageKey(): string | null {
     return this.conversationId ? `geminiTimelineStars:${this.conversationId}` : null;
+  }
+
+  private getLegacyStarsStorageKey(): string | null {
+    const legacyConversationId = this.computeLegacyConversationId();
+    return legacyConversationId ? `geminiTimelineStars:${legacyConversationId}` : null;
+  }
+
+  private getRouteStarsStorageKey(): string | null {
+    const routeConversationId = this.computeRouteConversationId();
+    return routeConversationId ? `geminiTimelineStars:${routeConversationId}` : null;
   }
 
   /**
@@ -550,9 +591,25 @@ export class TimelineManager {
   private async syncStarredFromService(): Promise<void> {
     if (!this.conversationId) return;
     try {
-      const messages = await StarredMessagesService.getStarredMessagesForConversation(
-        this.conversationId,
+      const data = await StarredMessagesService.getAllStarredMessages();
+      const matched = findMatchingStarredMessages(data, this.conversationId, window.location.href);
+
+      let messages = matched.messages;
+      const needsReconcile = matched.sourceConversationIds.some(
+        (sourceConversationId) => sourceConversationId !== this.conversationId,
       );
+
+      if (needsReconcile) {
+        const reconciled = await StarredMessagesService.reconcileConversationIds(
+          this.conversationId,
+          matched.sourceConversationIds,
+          window.location.href,
+        );
+        if (reconciled.length > 0) {
+          messages = reconciled;
+        }
+      }
+
       const nextSet = new Set(messages.map((message) => String(message.turnId)));
 
       // Update starredAt map from service data
@@ -877,7 +934,7 @@ export class TimelineManager {
           padding: cs.padding,
           border: cs.border,
           borderRadius: cs.borderRadius,
-          whiteSpace: 'normal',
+          whiteSpace: 'pre-line',
           wordBreak: 'break-word',
           maxWidth: 'none',
           display: 'block',
@@ -957,6 +1014,11 @@ export class TimelineManager {
 
       // Remove extension-injected UI elements (e.g. fork button)
       clone.querySelectorAll(INJECTED_UI_SELECTOR).forEach((el) => el.remove());
+
+      // Restore original text for LaTeX-rendered elements
+      clone.querySelectorAll<HTMLElement>('[data-user-latex-original]').forEach((el) => {
+        el.textContent = el.dataset.userLatexOriginal ?? '';
+      });
 
       return this.normalizeText(clone.textContent || '');
     } catch {
@@ -1239,6 +1301,7 @@ export class TimelineManager {
     const userTurnNodeList = this.conversationContainer.querySelectorAll(this.userTurnSelector);
     this.visibleRange = { start: 0, end: -1 };
     if (userTurnNodeList.length === 0) {
+      this.updateTimestampTracking([]);
       if (!this.zeroTurnsTimer) {
         // Optimized retry interval: reduced from 350ms to 200ms
         this.zeroTurnsTimer = window.setTimeout(() => {
@@ -1253,10 +1316,11 @@ export class TimelineManager {
       this.zeroTurnsTimer = null;
     }
 
-    // Clear all existing dots before rebuilding
-    (this.ui.trackContent || this.ui.timelineBar)!
-      .querySelectorAll('.timeline-dot')
-      .forEach((n) => n.remove());
+    // Build map of existing dots by turn ID for reuse (prevents hover/click disruption)
+    const oldDots = new Map<string, DotElement>();
+    for (const m of this.markers) {
+      if (m.dotElement) oldDots.set(m.id, m.dotElement);
+    }
 
     // Filter to top-level matches first to avoid nested duplicates, then dedupe by text+offset
     let allEls = Array.from(userTurnNodeList) as HTMLElement[];
@@ -1291,12 +1355,17 @@ export class TimelineManager {
         summary: this.extractTurnText(element),
         n,
         baseN: n,
-        dotElement: null,
+        dotElement: oldDots.get(id) ?? null,
         starred: this.starred.has(id),
       };
+      oldDots.delete(id);
       this.markerMap.set(id, m);
       return m;
     });
+    this.maybeAdoptDraftRouteTimestamps(this.markers.map((marker) => marker.id));
+    this.updateTimestampTracking(this.markers.map((marker) => marker.id));
+    // Remove orphaned dots (old dots not reused by any new marker)
+    for (const dot of oldDots.values()) dot.remove();
     this.markersVersion++;
     this.updateTimelineGeometry();
     if (!this.activeTurnId && this.markers.length > 0)
@@ -1315,10 +1384,116 @@ export class TimelineManager {
         starredAt: m.starred ? this.starredAtMap.get(m.id) : undefined,
       })),
     );
+    // Inject timestamps after markers are ready
+    this.injectMessageTimestamps().catch(() => {});
   };
 
+  private async injectMessageTimestamps(): Promise<void> {
+    if (!this.timestampService || !this.conversationId) return;
+    const timestampService = this.timestampService;
+    const conversationId = this.conversationId;
+    if (!this.showMessageTimestampsEnabled) {
+      // Remove any existing timestamps if feature is disabled
+      document.querySelectorAll('.gv-timestamp').forEach((el) => el.remove());
+      return;
+    }
+
+    const activeTurnIds = new Set<string>();
+    const existingTimestampEls = new Map<string, HTMLElement>();
+    document.querySelectorAll<HTMLElement>('.gv-timestamp[data-gv-turn-id]').forEach((el) => {
+      const turnId = el.getAttribute('data-gv-turn-id') || '';
+      if (!turnId) {
+        el.remove();
+        return;
+      }
+      existingTimestampEls.set(turnId, el);
+    });
+
+    // Use markers instead of querying DOM - markers already have the correct elements
+    this.markers.forEach((marker) => {
+      activeTurnIds.add(marker.id);
+      const msgEl = marker.element;
+      const parent = msgEl.parentElement;
+      if (!parent) {
+        existingTimestampEls.get(marker.id)?.remove();
+        existingTimestampEls.delete(marker.id);
+        return;
+      }
+
+      let insertionParent: HTMLElement | null = parent;
+      let insertionAnchor: HTMLElement = msgEl;
+      let alignClass = 'gv-timestamp-assistant';
+      const existingTimestampEl = existingTimestampEls.get(marker.id) ?? null;
+      try {
+        // Walk up to find the nearest horizontal row wrapper (avatar + bubble).
+        // Then insert timestamp before that row so it is always above the whole message row.
+        let rowWrapper: HTMLElement | null = null;
+        let cursor: HTMLElement | null = parent;
+        for (let i = 0; i < 4 && cursor; i++) {
+          const style = getComputedStyle(cursor);
+          if (style.display.includes('flex') && style.flexDirection.startsWith('row')) {
+            rowWrapper = cursor;
+            break;
+          }
+          cursor = cursor.parentElement;
+        }
+        if (rowWrapper && rowWrapper.parentElement) {
+          insertionParent = rowWrapper.parentElement as HTMLElement;
+          insertionAnchor = rowWrapper;
+          const rowStyle = getComputedStyle(rowWrapper);
+          if (rowStyle.justifyContent.includes('flex-end')) {
+            alignClass = 'gv-timestamp-user';
+          }
+        }
+      } catch {}
+      if (!insertionParent) {
+        return;
+      }
+
+      const timestamp = timestampService.getTimestamp(conversationId, marker.id as TurnId);
+      if (timestamp == null) {
+        existingTimestampEls.get(marker.id)?.remove();
+        existingTimestampEls.delete(marker.id);
+        return;
+      }
+
+      const formattedTime = timestampService.formatAbsoluteTime(timestamp);
+      const desiredClassName = `gv-timestamp ${alignClass}`;
+      const timestampEl = existingTimestampEl ?? document.createElement('div');
+      timestampEl.setAttribute('data-gv-turn-id', marker.id);
+      if (timestampEl.className !== desiredClassName) {
+        timestampEl.className = desiredClassName;
+      }
+      if (timestampEl.textContent !== formattedTime) {
+        timestampEl.textContent = formattedTime;
+      }
+
+      if (
+        timestampEl.parentElement !== insertionParent ||
+        timestampEl.nextSibling !== insertionAnchor
+      ) {
+        // Render timestamp above the message container (outside the bubble)
+        insertionParent.insertBefore(timestampEl, insertionAnchor);
+      }
+
+      existingTimestampEls.delete(marker.id);
+    });
+
+    existingTimestampEls.forEach((el, turnId) => {
+      if (!activeTurnIds.has(turnId)) {
+        el.remove();
+      }
+    });
+  }
+
+  private async loadMessageTimestampsEnabledSetting(): Promise<void> {
+    const enabledResult = await storageService.get<boolean>(StorageKeys.GV_SHOW_MESSAGE_TIMESTAMPS);
+    this.showMessageTimestampsEnabled = enabledResult.success && enabledResult.data === true;
+  }
+
   private setupObservers(): void {
-    this.mutationObserver = new MutationObserver(() => {
+    this.mutationObserver = new MutationObserver((records) => {
+      if (this.shouldIgnoreTimestampMutations(records)) return;
       this.debouncedRecalc();
     });
     if (this.conversationContainer)
@@ -1423,7 +1598,10 @@ export class TimelineManager {
     this.onTimelineBarOut = (e: MouseEvent) => {
       const fromDot = (e.target as HTMLElement).closest('.timeline-dot');
       const toDot = (e.relatedTarget as HTMLElement | null)?.closest?.('.timeline-dot');
-      if (fromDot && !toDot) this.hideTooltip();
+      if (fromDot && !toDot) {
+        const stillHoveringDot = this.ui.timelineBar?.querySelector('.timeline-dot:hover');
+        if (!stillHoveringDot) this.hideTooltip();
+      }
     };
     this.ui.timelineBar!.addEventListener('mouseover', this.onTimelineBarOver);
     this.ui.timelineBar!.addEventListener('mouseout', this.onTimelineBarOut);
@@ -1591,10 +1769,19 @@ export class TimelineManager {
 
     if (typeof chrome !== 'undefined' && chrome.storage?.onChanged) {
       this.onChromeStorageChanged = (changes, areaName) => {
-        if (areaName !== 'local') return;
-        const starredChange = changes[StorageKeys.TIMELINE_STARRED_MESSAGES];
-        if (!starredChange) return;
-        this.applySharedStarredData(starredChange.newValue as StarredMessagesData | null);
+        if (areaName === 'local') {
+          const starredChange = changes[StorageKeys.TIMELINE_STARRED_MESSAGES];
+          if (starredChange) {
+            this.applySharedStarredData(starredChange.newValue as StarredMessagesData | null);
+          }
+        }
+        if (areaName === 'sync' || areaName === 'local') {
+          const tsEnabledChange = changes[StorageKeys.GV_SHOW_MESSAGE_TIMESTAMPS];
+          if (tsEnabledChange) {
+            this.showMessageTimestampsEnabled = tsEnabledChange.newValue === true;
+            this.injectMessageTimestamps().catch(() => {});
+          }
+        }
       };
       chrome.storage.onChanged.addListener(this.onChromeStorageChanged);
     }
@@ -1872,9 +2059,12 @@ export class TimelineManager {
     const ell = '…';
     const el = this.measureEl;
     el.style.width = `${Math.max(0, Math.floor(targetWidth))}px`;
-    el.textContent = String(text || '')
-      .replace(/\s+/g, ' ')
+    const normalized = String(text || '')
+      .split('\n')
+      .map((line) => line.replace(/[ \t]+/g, ' ').trim())
+      .join('\n')
       .trim();
+    el.textContent = normalized;
     let h = el.offsetHeight;
     if (h <= maxH) return { text: el.textContent, height: h };
     const raw = el.textContent;
@@ -1940,10 +2130,14 @@ export class TimelineManager {
     }
     const tip = this.ui.tooltip;
     tip.setAttribute('dir', 'auto');
+    const dotId = dot.dataset.targetTurnId || '';
+    if (tip.classList.contains('visible') && this.tooltipDotId === dotId) {
+      this.refreshTooltipForDot(dot);
+      return;
+    }
+    this.tooltipDotId = dotId;
     tip.classList.remove('visible');
-    let fullText = (dot.getAttribute('aria-label') || '').trim();
-    const id = dot.dataset.targetTurnId!;
-    if (id && this.starred.has(id)) fullText = `★ ${fullText}`;
+    const fullText = this.buildTooltipText(dot);
     const p = this.computePlacementInfo(dot);
     const layout = this.truncateToThreeLines(fullText, p.width);
     tip.textContent = layout.text;
@@ -2018,13 +2212,25 @@ export class TimelineManager {
     const tip = this.ui.tooltip;
     tip.setAttribute('dir', 'auto');
     if (!tip.classList.contains('visible')) return;
-    let fullText = (dot.getAttribute('aria-label') || '').trim();
-    const id = dot.dataset.targetTurnId!;
-    if (id && this.starred.has(id)) fullText = `★ ${fullText}`;
+    const fullText = this.buildTooltipText(dot);
     const p = this.computePlacementInfo(dot);
     const layout = this.truncateToThreeLines(fullText, p.width);
     tip.textContent = layout.text;
     this.placeTooltipAt(dot, p.placement, p.width, layout.height);
+  }
+
+  private buildTooltipText(dot: DotElement): string {
+    let fullText = (dot.getAttribute('aria-label') || '').trim();
+    const id = dot.dataset.targetTurnId || '';
+    if (id && this.starred.has(id)) fullText = `★ ${fullText}`;
+
+    if (this.showMessageTimestampsEnabled && id && this.timestampService && this.conversationId) {
+      const ts = this.timestampService.getTimestamp(this.conversationId, id as TurnId);
+      if (typeof ts === 'number') {
+        fullText = `${this.timestampService.formatAbsoluteTime(ts)}\n${fullText}`;
+      }
+    }
+    return fullText;
   }
 
   private scheduleScrollSync(): void {
@@ -2157,12 +2363,18 @@ export class TimelineManager {
         }
       }
     } else {
-      // Clear all dots and reset references
+      // Range was reset — preserve dots owned by in-range markers, remove the rest
+      const keepDots = new Set<Element>();
+      for (let i = start; i <= end; i++) {
+        if (this.markers[i]?.dotElement) keepDots.add(this.markers[i].dotElement!);
+      }
       (this.ui.trackContent || this.ui.timelineBar)!
         .querySelectorAll('.timeline-dot')
-        .forEach((n) => n.remove());
+        .forEach((n) => {
+          if (!keepDots.has(n)) n.remove();
+        });
       this.markers.forEach((m) => {
-        m.dotElement = null;
+        if (m.dotElement && !keepDots.has(m.dotElement)) m.dotElement = null;
       });
     }
 
@@ -2203,6 +2415,7 @@ export class TimelineManager {
         frag.appendChild(dot);
       } else {
         marker.dotElement.dataset.markerIndex = String(i);
+        marker.dotElement.setAttribute('aria-label', marker.summary);
         marker.dotElement.style.setProperty('--n', String(marker.n || 0));
         if (this.usePixelTop) marker.dotElement.style.top = `${Math.round(this.yPositions[i])}px`;
         marker.dotElement.classList.toggle('starred', !!marker.starred);
@@ -2468,6 +2681,7 @@ export class TimelineManager {
     const doHide = () => {
       this.ui.tooltip!.classList.remove('visible');
       this.ui.tooltip!.setAttribute('aria-hidden', 'true');
+      this.tooltipDotId = null;
       this.tooltipHideTimer = null;
     };
     if (immediate) return doHide();
@@ -2546,7 +2760,20 @@ export class TimelineManager {
     const key = this.getStarsStorageKey();
     if (!key) return;
 
-    const raw = this.safeLocalStorageGet(key);
+    const fallbackKeys = [this.getRouteStarsStorageKey(), this.getLegacyStarsStorageKey()].filter(
+      (candidate): candidate is string => Boolean(candidate && candidate !== key),
+    );
+
+    let raw = this.safeLocalStorageGet(key);
+    if (!raw) {
+      for (const fallbackKey of fallbackKeys) {
+        raw = this.safeLocalStorageGet(fallbackKey);
+        if (raw) {
+          this.safeLocalStorageSet(key, raw);
+          break;
+        }
+      }
+    }
     if (!raw) return;
 
     try {
@@ -2947,6 +3174,10 @@ export class TimelineManager {
           this.enqueueNavigation('previous', event.repeat);
         } else if (action === 'timeline:next') {
           this.enqueueNavigation('next', event.repeat);
+        } else if (action === 'timeline:first') {
+          this.navigateToFirstNode();
+        } else if (action === 'timeline:last') {
+          this.navigateToLastNode();
         }
       });
     } catch (error) {
@@ -3131,6 +3362,32 @@ export class TimelineManager {
     const targetIndex = currentIndex < 0 ? 0 : Math.min(currentIndex + 1, this.markers.length - 1);
 
     await this.performNodeNavigation(targetIndex, currentIndex);
+  }
+
+  /**
+   * Navigate to first timeline node (gg)
+   */
+  private async navigateToFirstNode(): Promise<void> {
+    if (this.markers.length === 0) return;
+
+    this.maybeRefreshMarkersForNavigation('previous');
+    this.navigationQueue.length = 0;
+    const currentIndex = this.getActiveIndex();
+
+    await this.performNodeNavigation(0, currentIndex);
+  }
+
+  /**
+   * Navigate to last timeline node (GG)
+   */
+  private async navigateToLastNode(): Promise<void> {
+    if (this.markers.length === 0) return;
+
+    this.maybeRefreshMarkersForNavigation('next');
+    this.navigationQueue.length = 0;
+    const currentIndex = this.getActiveIndex();
+
+    await this.performNodeNavigation(this.markers.length - 1, currentIndex);
   }
 
   private maybeRefreshMarkersForNavigation(direction: 'previous' | 'next'): void {
@@ -3467,6 +3724,118 @@ export class TimelineManager {
       clearTimeout(this.sliderFadeTimer);
       this.sliderFadeTimer = null;
     }
+    if (this.timestampStartupTimer) {
+      clearTimeout(this.timestampStartupTimer);
+      this.timestampStartupTimer = null;
+    }
     this.pendingActiveId = null;
+  }
+
+  private updateTimestampTracking(markerIds: string[]): void {
+    if (!this.timestampTrackingReady) {
+      markerIds.forEach((markerId) => this.seenTurnIds.add(markerId));
+      const shouldResetDelay = markerIds.length > 0 || this.seenTurnIds.size > 0;
+      this.scheduleTimestampTrackingReady(shouldResetDelay);
+      return;
+    }
+
+    markerIds.forEach((markerId) => {
+      if (this.seenTurnIds.has(markerId)) return;
+      this.seenTurnIds.add(markerId);
+      this.recordTimestampForTurn(markerId);
+    });
+  }
+
+  private scheduleTimestampTrackingReady(resetDelay: boolean): void {
+    if (this.timestampTrackingReady) return;
+
+    if (resetDelay && this.timestampStartupTimer !== null) {
+      clearTimeout(this.timestampStartupTimer);
+      this.timestampStartupTimer = null;
+    }
+
+    if (this.timestampStartupTimer !== null) return;
+
+    this.timestampStartupTimer = window.setTimeout(() => {
+      this.timestampTrackingReady = true;
+      this.timestampStartupTimer = null;
+    }, this.initialTimestampSnapshotDelay);
+  }
+
+  private recordTimestampForTurn(turnId: string): void {
+    if (!this.timestampService || !this.conversationId) return;
+    if (this.timestampService.getTimestamp(this.conversationId, turnId as TurnId) !== null) return;
+
+    this.timestampService.recordTimestamp(this.conversationId, turnId as TurnId).catch(() => {});
+  }
+
+  private maybeAdoptDraftRouteTimestamps(markerIds: string[]): void {
+    if (
+      !this.timestampService ||
+      !this.conversationId ||
+      !this.pendingDraftTimestampSourceConversationId ||
+      markerIds.length === 0
+    ) {
+      return;
+    }
+
+    const sourceConversationId = this.pendingDraftTimestampSourceConversationId;
+    const latestDraftTimestamp =
+      this.timestampService.getLatestTimestampForConversation(sourceConversationId);
+
+    this.pendingDraftTimestampSourceConversationId = null;
+
+    if (
+      latestDraftTimestamp == null ||
+      Date.now() - latestDraftTimestamp > this.draftTimestampAdoptionWindowMs
+    ) {
+      return;
+    }
+
+    this.timestampService
+      .adoptTimestamps(
+        sourceConversationId,
+        this.conversationId,
+        markerIds.map((markerId) => markerId as TurnId),
+      )
+      .catch(() => {});
+  }
+
+  private computeDraftTimestampSourceConversationId(previousUrl: string | null): string | null {
+    if (!previousUrl) return null;
+
+    const previousNativeConversationId = extractConversationIdFromUrl(previousUrl);
+    const currentNativeConversationId = extractConversationIdFromUrl(window.location.href);
+
+    if (previousNativeConversationId || !currentNativeConversationId) {
+      return null;
+    }
+
+    return buildConversationIdFromUrl(previousUrl);
+  }
+
+  private shouldIgnoreTimestampMutations(records: MutationRecord[]): boolean {
+    if (records.length === 0) return false;
+
+    return records.every((record) => {
+      if (record.type !== 'childList') return false;
+
+      const changedNodes = [...Array.from(record.addedNodes), ...Array.from(record.removedNodes)];
+      if (changedNodes.length === 0) return false;
+
+      return changedNodes.every((node) => this.isTimestampMutationNode(node));
+    });
+  }
+
+  private isTimestampMutationNode(node: Node): boolean {
+    if (node instanceof HTMLElement) {
+      return node.classList.contains('gv-timestamp') || !!node.closest('.gv-timestamp');
+    }
+
+    if (node.nodeType === Node.TEXT_NODE) {
+      return !!node.parentElement?.closest('.gv-timestamp');
+    }
+
+    return false;
   }
 }

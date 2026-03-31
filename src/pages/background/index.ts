@@ -26,6 +26,25 @@ const GEMINI_MATCHES = [
   'https://aistudio.google.cn/*',
 ];
 
+function isStarredMessagesData(value: unknown): value is StarredMessagesData {
+  if (typeof value !== 'object' || value === null) return false;
+  const data = value as { messages?: unknown };
+  if (typeof data.messages !== 'object' || data.messages === null) return false;
+  const messages = data.messages as Record<string, unknown>;
+  return Object.values(messages).every((v) => Array.isArray(v));
+}
+
+function isForkNodesData(value: unknown): value is ForkNodesData {
+  if (typeof value !== 'object' || value === null) return false;
+  const data = value as { nodes?: unknown; groups?: unknown };
+  return (
+    typeof data.nodes === 'object' &&
+    data.nodes !== null &&
+    typeof data.groups === 'object' &&
+    data.groups !== null
+  );
+}
+
 function isSyncAccountScope(value: unknown): value is SyncAccountScope {
   if (typeof value !== 'object' || value === null) return false;
   const scope = value as Record<string, unknown>;
@@ -340,7 +359,8 @@ class StarredMessagesManager {
   private async getFromStorage(): Promise<StarredMessagesData> {
     try {
       const result = await chrome.storage.local.get([StorageKeys.TIMELINE_STARRED_MESSAGES]);
-      return result[StorageKeys.TIMELINE_STARRED_MESSAGES] || { messages: {} };
+      const starred = result[StorageKeys.TIMELINE_STARRED_MESSAGES];
+      return isStarredMessagesData(starred) ? starred : { messages: {} };
     } catch (error) {
       console.error('[Background] Failed to get starred messages:', error);
       return { messages: {} };
@@ -418,6 +438,51 @@ class StarredMessagesManager {
     const messages = await this.getStarredMessagesForConversation(conversationId);
     return messages.some((m) => m.turnId === turnId);
   }
+
+  async reconcileConversationIds(
+    targetConversationId: string,
+    sourceConversationIds: string[],
+    conversationUrl?: string,
+  ): Promise<StarredMessage[]> {
+    return this.serialize(async () => {
+      const data = await this.getFromStorage();
+      const uniqueConversationIds = Array.from(
+        new Set([targetConversationId, ...sourceConversationIds]),
+      ).filter(Boolean);
+
+      const mergedMessages = new Map<string, StarredMessage>();
+
+      for (const conversationId of uniqueConversationIds) {
+        const messages = data.messages[conversationId] || [];
+        for (const message of messages) {
+          const normalizedMessage: StarredMessage = {
+            ...message,
+            conversationId: targetConversationId,
+            conversationUrl: conversationUrl || message.conversationUrl,
+          };
+          const existing = mergedMessages.get(message.turnId);
+          if (!existing || normalizedMessage.starredAt >= existing.starredAt) {
+            mergedMessages.set(message.turnId, normalizedMessage);
+          }
+        }
+      }
+
+      if (mergedMessages.size > 0) {
+        data.messages[targetConversationId] = Array.from(mergedMessages.values());
+      } else {
+        delete data.messages[targetConversationId];
+      }
+
+      for (const conversationId of uniqueConversationIds) {
+        if (conversationId !== targetConversationId) {
+          delete data.messages[conversationId];
+        }
+      }
+
+      await this.saveToStorage(data);
+      return data.messages[targetConversationId] || [];
+    });
+  }
 }
 
 const starredMessagesManager = new StarredMessagesManager();
@@ -438,7 +503,8 @@ class ForkNodesManager {
   private async getFromStorage(): Promise<ForkNodesData> {
     try {
       const result = await chrome.storage.local.get([StorageKeys.FORK_NODES]);
-      return result[StorageKeys.FORK_NODES] || { nodes: {}, groups: {} };
+      const forkNodes = result[StorageKeys.FORK_NODES];
+      return isForkNodesData(forkNodes) ? forkNodes : { nodes: {}, groups: {} };
     } catch (error) {
       console.error('[Background] Failed to get fork nodes:', error);
       return { nodes: {}, groups: {} };
@@ -606,6 +672,19 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
               message.payload.turnId,
             );
             sendResponse({ ok: true, isStarred });
+            return;
+          }
+          case 'gv.starred.reconcileConversationIds': {
+            const messages = await starredMessagesManager.reconcileConversationIds(
+              message.payload.targetConversationId,
+              Array.isArray(message.payload.sourceConversationIds)
+                ? message.payload.sourceConversationIds
+                : [],
+              typeof message.payload.conversationUrl === 'string'
+                ? message.payload.conversationUrl
+                : undefined,
+            );
+            sendResponse({ ok: true, messages });
             return;
           }
         }

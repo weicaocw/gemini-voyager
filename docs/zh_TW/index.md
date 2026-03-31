@@ -41,6 +41,9 @@ features:
   - icon: 💬
     title: 引用回覆
     details: 選中即引。上下文精確回覆，溝通更高效。
+  - icon: 🕐
+    title: 訊息時間戳
+    details: 時光標記。自動記錄每則訊息的傳送時間，回溯對話脈絡一目了然。
   - icon: ↔️
     title: 對話寬度
     details: 視野全開。自由調節對話框寬度，程式碼表格完整呈現。
@@ -77,13 +80,16 @@ features:
   - icon: 🔬
     title: Deep Research
     details: 拆開黑箱。一鍵提取 Deep Research 的思考過程與研究連結。
+  - icon: 🔤
+    title: 字體大小
+    details: 大小隨心。自由調整聊天字號，舒適閱讀由你掌控。
+  - icon: 📌
+    title: 側邊欄自動隱藏
+    details: 專注模式。滑鼠離開自動收起側邊欄，全螢幕沉浸對話。
+  - icon: ⌨️
+    title: 傳送行為
+    details: Enter 換行，Ctrl+Enter 傳送。讓對話節奏回歸你的雙手。
 ---
-
-<div class="vp-doc" style="margin: 2rem auto 0; max-width: 780px; padding: 0 16px;">
-  <div style="background: rgba(234, 179, 8, 0.12); border: 1px solid rgba(234, 179, 8, 0.6); border-radius: 8px; padding: 12px 16px;">
-    <strong>⚠️ 改名公告</strong>：由於商標版權問題，本插件已正式改名為 <strong>Voyager</strong>。但由於 Chrome Web Store 審核速度極慢，七天內未能完成名稱更新審核，暫時無法在 Chrome Web Store 使用。
-  </div>
-</div>
 
 <div class="vp-doc" style="text-align: center; margin: 4rem auto 3rem; max-width: 780px; padding: 0 16px;">
   <h3 style="margin: 0 0 8px; font-weight: 600; font-size: 1.05em;">每一次下載，都是信任的刻度</h3>
@@ -93,8 +99,8 @@ features:
     <img src="https://img.shields.io/github/forks/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="GitHub Fork">
     <img src="https://img.shields.io/github/v/release/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="最新版本">
     <img src="https://img.shields.io/github/downloads/Nagi-ovo/gemini-voyager/total?style=flat-square&logo=github" alt="GitHub 下載量">
-    <img src="https://img.shields.io/chrome-web-store/users/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Chrome 商店用戶數">
-    <img src="https://img.shields.io/chrome-web-store/rating/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Chrome 商店評分">
+    <img src="https://img.shields.io/chrome-web-store/users/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Chrome 商店用戶數">
+    <img src="https://img.shields.io/chrome-web-store/rating/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Chrome 商店評分">
     <img src="https://img.shields.io/badge/Edge-✓-0078D7?style=flat-square&logo=microsoft-edge" alt="Edge 商店">
     <img src="https://img.shields.io/amo/users/gemini-voyager?style=flat-square&logo=firefox" alt="Firefox 商店用戶數">
     <img src="https://img.shields.io/amo/rating/gemini-voyager?style=flat-square&logo=firefox" alt="Firefox 商店評分">
@@ -102,6 +108,12 @@ features:
   <div style="margin-top: 16px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px;">
     <a href="https://trendshift.io/repositories/16094" target="_blank"><img src="https://trendshift.io/api/badge/repositories/16094" alt="Nagi-ovo%2Fgemini-voyager | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
     <!-- <a href="https://www.producthunt.com/products/gemini-voyager?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-gemini-voyager" target="_blank" rel="noopener noreferrer"><img alt="Voyager - All-in-one Gemini suite: folders, chat export and much more | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1064704&amp;theme=light&amp;t=1768842096186"></a> -->
+  </div>
+</div>
+
+<div class="vp-doc" style="text-align: center; margin: 2.5rem auto 0; max-width: 780px; padding: 0 16px;">
+  <div style="background: var(--vp-c-warning-soft); border: 1px solid var(--vp-c-warning-1); border-radius: 8px; padding: 16px 20px;">
+    <p style="margin: 0; font-size: 0.95em; line-height: 1.6;">Voyager 曾因商標爭議被 Chrome Web Store 下架，所有累積的用戶和評價都歸零了。現在我們已重新上架，正在從頭開始重建——如果你覺得 Voyager 好用，去商店頁面留個<strong>評分或評價</strong>，對我們來說意義重大。</p>
   </div>
 </div>
 

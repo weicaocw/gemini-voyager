@@ -19,8 +19,8 @@
     <img src="https://img.shields.io/github/forks/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="GitHub forks">
     <img src="https://img.shields.io/github/v/release/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="Latest version">
     <img src="https://img.shields.io/github/downloads/Nagi-ovo/gemini-voyager/total?style=flat-square&logo=github" alt="GitHub downloads">
-    <img src="https://img.shields.io/chrome-web-store/users/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Chrome Web Store users">
-    <img src="https://img.shields.io/chrome-web-store/rating/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Chrome Web Store rating">
+    <img src="https://img.shields.io/chrome-web-store/users/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Chrome Web Store users">
+    <img src="https://img.shields.io/chrome-web-store/rating/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Chrome Web Store rating">
     <img src="https://img.shields.io/amo/users/gemini-voyager?style=flat-square&logo=firefox" alt="Firefox Add-ons users">
     <img src="https://img.shields.io/amo/rating/gemini-voyager?style=flat-square&logo=firefox" alt="Firefox Add-ons rating">
   </p>
@@ -58,11 +58,11 @@
   <b>🎉 Altamente recomendado pelos principais influenciadores de tecnologia!</b>
 </p>
 
-> [!IMPORTANT]
-> **Aviso de mudança de nome**: Devido a problemas de marcas registradas e direitos autorais, esta extensão foi oficialmente renomeada para **Voyager**. No entanto, devido ao processo extremamente lento de revisão do Chrome Web Store, a mudança de nome não foi aprovada em 7 dias — está temporariamente indisponível no Chrome Web Store.
-
 > [!NOTE]
 > Se o Voyager for útil para você, compartilhe no X, Reddit, YouTube, etc. Cada partilha ajuda mais pessoas a descobrir o projeto e a melhorar a experiência com Gemini. Obrigado.
+
+> [!IMPORTANT]
+> O Voyager foi anteriormente removido da Chrome Web Store devido a uma disputa de marca registrada, resultando na perda de todos os utilizadores e avaliações acumulados. Estamos de volta e a reconstruir do zero — se o Voyager lhe for útil, deixar uma avaliação na página da loja significaria muito para nós.
 
 ---
 
@@ -129,7 +129,7 @@ Para um guia completo, visite a nossa [Documentação](https://voyager.nagi.fun/
 > ⚠️ Nota: O Gestor de Prompts é a única funcionalidade que suporta o Gemini for Enterprise.
 
 <div align="center">
-  <a href="https://chromewebstore.google.com/detail/kjdpnimcnfinmilocccippmododhceol?utm_source=github&utm_medium=readme&utm_campaign=organic_growth&utm_content=pt" target="_blank">
+  <a href="https://chromewebstore.google.com/detail/iifacdnjakkhjjiengaffnegbndgingi?utm_source=github&utm_medium=readme&utm_campaign=organic_growth&utm_content=pt" target="_blank">
     <img src="https://img.shields.io/badge/Chrome%20Web%20Store-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Chrome Web Store" height="36">
   </a>
   &nbsp;&nbsp;
@@ -237,6 +237,8 @@ Um agradecimento especial a todos os colaboradores pelas suas contribuições ao
 - **[ChatGPT Conversation Timeline](https://github.com/Reborn14/chatgpt-conversation-timeline)** - A fonte original de inspiração para a navegação na linha do tempo.
 
 - **[Ophel Atlas](https://github.com/urzeye/ophel)** - Uma extensão de navegador que transforma conversas de IA em documentos organizados e pesquisáveis, com geração automática de esquemas, gestão de conversas e biblioteca de prompts, compatível com múltiplas plataformas de IA.
+
+- **[Better_Doubao](https://github.com/Rex16200513/Better_Doubao)** - Uma extensão de navegador avançada que aprimora o Doubao com navegação aprimorada, organização e recursos de produtividade.
 
 ---
 

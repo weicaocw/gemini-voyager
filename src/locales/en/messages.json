@@ -199,6 +199,14 @@
     "message": "Backups include all prompts and folders, saved in a timestamped folder (format: backup-YYYYMMDD-HHMMSS)",
     "description": "Backup feature note"
   },
+  "pm_theme_light": {
+    "message": "Switch to light mode",
+    "description": "Theme toggle tooltip - switch to light"
+  },
+  "pm_theme_dark": {
+    "message": "Switch to dark mode",
+    "description": "Theme toggle tooltip - switch to dark"
+  },
   "extensionVersion": {
     "message": "Version",
     "description": "Extension version label"
@@ -351,6 +359,18 @@
     "message": "Wide",
     "description": "Wide chat width label"
   },
+  "chatFontSize": {
+    "message": "Chat font size",
+    "description": "Chat message font size adjustment label"
+  },
+  "chatFontSizeSmall": {
+    "message": "Small",
+    "description": "Small font size label"
+  },
+  "chatFontSizeLarge": {
+    "message": "Large",
+    "description": "Large font size label"
+  },
   "sidebarWidth": {
     "message": "Sidebar width",
     "description": "Sidebar width adjustment label"
@@ -390,6 +410,10 @@
   "formulaCopyFormatNoDollar": {
     "message": "LaTeX (No Dollar Sign)",
     "description": "LaTeX format option without dollar signs"
+  },
+  "formulaCopyFormatNotion": {
+    "message": "Notion ($$ format)",
+    "description": "Notion-compatible format with $$ delimiters"
   },
   "folder_filter_current_user": {
     "message": "Account Isolation",
@@ -763,6 +787,14 @@
     "message": "Next node",
     "description": "Next timeline node shortcut label"
   },
+  "firstNode": {
+    "message": "First turn",
+    "description": "First timeline node shortcut label"
+  },
+  "lastNode": {
+    "message": "Last turn",
+    "description": "Last timeline node shortcut label"
+  },
   "shortcutKey": {
     "message": "Key",
     "description": "Shortcut key label"
@@ -1022,6 +1054,14 @@
   "ctrlEnterSendHint": {
     "message": "Press {modifier}+Enter to send messages, Enter to add a new line",
     "description": "Modifier+Enter to send feature hint. {modifier} is replaced with ⌘ on macOS and Ctrl on other platforms"
+  },
+  "draftAutoSave": {
+    "message": "Draft auto-save",
+    "description": "Toggle label for input draft auto-save feature"
+  },
+  "draftAutoSaveHint": {
+    "message": "Automatically save and restore unsent input when you refresh or reopen a conversation",
+    "description": "Hint for draft auto-save feature"
   },
   "batch_delete_confirm": {
     "message": "Are you sure you want to delete {count} conversation(s)? This action cannot be undone.",
@@ -1470,5 +1510,21 @@
   "aiOrgInstructionsBody": {
     "message": "Based on the conversations and folder structure above, please reorganize them into a logical folder hierarchy. Output a JSON file using the exact format below that can be directly imported into the Gemini Voyager extension (use the \"Merge\" import strategy). Keep existing well-organized folders, create new ones as needed, and move unfiled conversations into appropriate folders. Each folder needs a unique ID (use a short random string), and each conversation must keep its original conversationId and url.",
     "description": "Instructions body for AI to generate importable folder structure"
+  },
+  "showMessageTimestamps": {
+    "message": "Show Message Timestamps",
+    "description": "Display timestamp for each message"
+  },
+  "showMessageTimestampsHint": {
+    "message": "Show when each message was sent",
+    "description": "Hint for message timestamps feature"
+  },
+  "moveSectionUp": {
+    "message": "Move up",
+    "description": "Tooltip for moving a settings section up in popup"
+  },
+  "moveSectionDown": {
+    "message": "Move down",
+    "description": "Tooltip for moving a settings section down in popup"
   }
 }

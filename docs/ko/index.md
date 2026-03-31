@@ -41,6 +41,9 @@ features:
   - icon: 💬
     title: 인용 답장
     details: 텍스트를 선택하여 인용하세요. 효율적인 커뮤니케이션을 위한 문맥 인식 답장.
+  - icon: 🕐
+    title: 메시지 타임스탬프
+    details: 시간 기록. 각 메시지의 전송 시간을 자동으로 기록하여 대화 흐름을 한눈에 파악하세요.
   - icon: ↔️
     title: 대화 너비
     details: 더 넓게 보세요. 더 나은 시각적 경험을 위해 대화 너비를 자유롭게 조정하세요.
@@ -77,13 +80,16 @@ features:
   - icon: 🔬
     title: Deep Research
     details: 사고를 해체하세요. Deep Research 세션에서 연구 과정과 링크를 추출합니다.
+  - icon: 🔤
+    title: 글꼴 크기
+    details: 나만의 읽기 경험. 채팅 글꼴 크기를 자유롭게 조정하세요.
+  - icon: 📌
+    title: 사이드바 자동 숨기기
+    details: 집중 모드. 마우스가 벗어나면 사이드바가 자동으로 접혀 대화에 몰입하세요.
+  - icon: ⌨️
+    title: 전송 동작
+    details: Enter로 줄바꿈, Ctrl+Enter로 전송. 대화의 리듬을 직접 제어하세요.
 ---
-
-<div class="vp-doc" style="margin: 2rem auto 0; max-width: 780px; padding: 0 16px;">
-  <div style="background: rgba(234, 179, 8, 0.12); border: 1px solid rgba(234, 179, 8, 0.6); border-radius: 8px; padding: 12px 16px;">
-    <strong>⚠️ 이름 변경 안내</strong>: 상표 및 저작권 문제로 인해 이 확장 프로그램이 공식적으로 <strong>Voyager</strong>로 이름이 변경되었습니다. 하지만 Chrome 웹 스토어의 심사 속도가 매우 느려 7일 이내에 이름 변경이 승인되지 않아, 현재 Chrome Web Store에서 일시적으로 이용할 수 없는 상태입니다.
-  </div>
-</div>
 
 <div class="vp-doc" style="text-align: center; margin: 4rem auto 3rem; max-width: 780px; padding: 0 16px;">
   <h3 style="margin: 0 0 8px; font-weight: 600; font-size: 1.05em;">모든 설치는 신뢰의 투표입니다</h3>
@@ -93,14 +99,20 @@ features:
     <img src="https://img.shields.io/github/forks/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="GitHub Forks">
     <img src="https://img.shields.io/github/v/release/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="Latest Release">
     <img src="https://img.shields.io/github/downloads/Nagi-ovo/gemini-voyager/total?style=flat-square&logo=github" alt="GitHub Downloads">
-    <img src="https://img.shields.io/chrome-web-store/users/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Chrome Web Store Users">
-    <img src="https://img.shields.io/chrome-web-store/rating/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Chrome Web Store Rating">
+    <img src="https://img.shields.io/chrome-web-store/users/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Chrome Web Store Users">
+    <img src="https://img.shields.io/chrome-web-store/rating/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Chrome Web Store Rating">
     <img src="https://img.shields.io/badge/Edge-✓-0078D7?style=flat-square&logo=microsoft-edge" alt="Edge Add-ons">
     <img src="https://img.shields.io/amo/users/gemini-voyager?style=flat-square&logo=firefox" alt="Firefox Add-ons Users">
     <img src="https://img.shields.io/amo/rating/gemini-voyager?style=flat-square&logo=firefox" alt="Firefox Add-ons Rating">
   </div>
   <div style="margin-top: 16px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px;">
     <a href="https://trendshift.io/repositories/16094" target="_blank"><img src="https://trendshift.io/api/badge/repositories/16094" alt="Nagi-ovo%2Fgemini-voyager | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+  </div>
+</div>
+
+<div class="vp-doc" style="text-align: center; margin: 2.5rem auto 0; max-width: 780px; padding: 0 16px;">
+  <div style="background: var(--vp-c-warning-soft); border: 1px solid var(--vp-c-warning-1); border-radius: 8px; padding: 16px 20px;">
+    <p style="margin: 0; font-size: 0.95em; line-height: 1.6;">Voyager 는 이전에 상표권 분쟁으로 인해 Chrome 웹 스토어에서 삭제되어 그동안 축적된 모든 사용자와 리뷰를 잃었습니다. 현재 다시 복귀하여 처음부터 재건 중입니다 — Voyager 가 유용하다고 느끼신다면, 스토어 페이지에 <strong>평점이나 리뷰</strong>를 남겨주시면 큰 힘이 됩니다.</p>
   </div>
 </div>
 

@@ -19,8 +19,8 @@
     <img src="https://img.shields.io/github/forks/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="GitHub forks">
     <img src="https://img.shields.io/github/v/release/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="Latest version">
     <img src="https://img.shields.io/github/downloads/Nagi-ovo/gemini-voyager/total?style=flat-square&logo=github" alt="GitHub downloads">
-    <img src="https://img.shields.io/chrome-web-store/users/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Chrome Web Store users">
-    <img src="https://img.shields.io/chrome-web-store/rating/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Chrome Web Store rating">
+    <img src="https://img.shields.io/chrome-web-store/users/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Chrome Web Store users">
+    <img src="https://img.shields.io/chrome-web-store/rating/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Chrome Web Store rating">
     <img src="https://img.shields.io/amo/users/gemini-voyager?style=flat-square&logo=firefox" alt="Firefox Add-ons users">
     <img src="https://img.shields.io/amo/rating/gemini-voyager?style=flat-square&logo=firefox" alt="Firefox Add-ons rating">
   </p>
@@ -58,11 +58,11 @@
   <b>🎉 نوصي به بشدة من قبل كبار المؤثرين في مجال التكنولوجيا والمجتمع!</b>
 </p>
 
-> [!IMPORTANT]
-> **إشعار تغيير الاسم**: بسبب مخاوف تتعلق بالعلامات التجارية وحقوق النشر، تم تغيير اسم هذا الامتداد رسمياً إلى **Voyager**. ومع ذلك، بسبب بطء شديد في عملية مراجعة Chrome Web Store، لم يتم الموافقة على تغيير الاسم خلال 7 أيام — وهو غير متاح مؤقتاً على Chrome Web Store.
-
 > [!NOTE]
 > إذا كان Voyager مفيداً لك، فشاركْه على X أو Reddit أو YouTube إلخ. كل مشاركة تساعد المزيد من الناس على اكتشاف المشروع وتحسين تجربة Gemini. شكراً.
+
+> [!IMPORTANT]
+> تمت إزالة Voyager سابقاً من متجر Chrome الإلكتروني بسبب نزاع على العلامة التجارية، مما أدى إلى فقدان جميع المستخدمين والمراجعات المتراكمة. لقد عدنا الآن ونعيد البناء من الصفر — إذا وجدت Voyager مفيداً، فإن ترك تقييم أو مراجعة على صفحة المتجر سيعني لنا الكثير.
 
 ---
 
@@ -123,7 +123,7 @@
 > ⚠️ ملاحظة: مدير المطالبات هو الميزة الوحيدة التي تدعم Gemini للمؤسسات.
 
 <div align="center">
-  <a href="https://chromewebstore.google.com/detail/kjdpnimcnfinmilocccippmododhceol?utm_source=github&utm_medium=readme&utm_campaign=organic_growth&utm_content=ar" target="_blank">
+  <a href="https://chromewebstore.google.com/detail/iifacdnjakkhjjiengaffnegbndgingi?utm_source=github&utm_medium=readme&utm_campaign=organic_growth&utm_content=ar" target="_blank">
     <img src="https://img.shields.io/badge/Chrome%20Web%20Store-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Chrome Web Store" height="36">
   </a>
   &nbsp;&nbsp;
@@ -231,6 +231,8 @@
 - **[ChatGPT Conversation Timeline](https://github.com/Reborn14/chatgpt-conversation-timeline)** - مصدر الإلهام الأصلي للتنقل في الجدول الزمني للمحادثة.
 
 - **[Ophel Atlas](https://github.com/urzeye/ophel)** - إضافة متصفح تحوّل محادثات الذكاء الاصطناعي إلى مستندات منظمة وقابلة للبحث، مع إنشاء تلقائي للمخططات وإدارة المحادثات ومكتبة للأوامر، وتدعم منصات ذكاء اصطناعي متعددة.
+
+- **[Better_Doubao](https://github.com/Rex16200513/Better_Doubao)** - إضافة متصفح متقدمة تعزز Doubao بميزات التنقل المحسّن والتنظيم والإنتاجية.
 
 ---
 

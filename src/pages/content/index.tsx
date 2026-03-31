@@ -9,10 +9,12 @@ import { startFormulaCopy } from '@/features/formulaCopy';
 import { initI18n } from '@/utils/i18n';
 
 import { startChangelog } from './changelog/index';
+import { startChatFontSizeAdjuster } from './chatFontSize/index';
 import { startChatWidthAdjuster } from './chatWidth/index';
 import { startContextSync } from './contextSync';
 import { startDeepResearchExport } from './deepResearch/index';
 import DefaultModelManager from './defaultModel/modelLocker';
+import { startDraftSave } from './draftSave/index';
 import { startEditInputWidthAdjuster } from './editInputWidth/index';
 import { startExportButton } from './export/index';
 import { startAIStudioFolderManager } from './folder/aistudio';
@@ -28,15 +30,14 @@ import { startMermaid } from './mermaid/index';
 import { startPreventAutoScroll } from './preventAutoScroll/index';
 import { startPromptManager } from './prompt/index';
 import { startQuoteReply } from './quoteReply/index';
-import { startRainEffect } from './rainEffect/index';
 import { startRecentsHider } from './recentsHider/index';
-import { startSakuraEffect } from './sakuraEffect/index';
 import { startSendBehavior } from './sendBehavior/index';
 import { startSidebarAutoHide } from './sidebarAutoHide';
 import { startSidebarWidthAdjuster } from './sidebarWidth';
-import { startSnowEffect } from './snowEffect/index';
 import { startTimeline } from './timeline/index';
 import { startTitleUpdater } from './titleUpdater';
+import { startUserLatex } from './userLatex/index';
+import { startRainEffect, startSakuraEffect, startSnowEffect } from './visualEffects';
 import { startWatermarkRemover } from './watermarkRemover/index';
 
 // Suppress Vite's CSS preload errors in the Chrome extension content script context.
@@ -73,6 +74,7 @@ let folderManagerInstance: Awaited<ReturnType<typeof startFolderManager>> | null
 let promptManagerInstance: Awaited<ReturnType<typeof startPromptManager>> | null = null;
 let quoteReplyCleanup: (() => void) | null = null;
 let sendBehaviorCleanup: (() => void) | null = null;
+let draftSaveCleanup: (() => void) | null = null;
 let forkCleanup: (() => void) | null = null;
 
 async function isForkFeatureEnabled(): Promise<boolean> {
@@ -180,6 +182,9 @@ async function initializeFeatures(): Promise<void> {
       startChatWidthAdjuster();
       await delay(LIGHT_FEATURE_INIT_DELAY);
 
+      startChatFontSizeAdjuster();
+      await delay(LIGHT_FEATURE_INIT_DELAY);
+
       startEditInputWidthAdjuster();
       await delay(LIGHT_FEATURE_INIT_DELAY);
 
@@ -238,6 +243,10 @@ async function initializeFeatures(): Promise<void> {
       sendBehaviorCleanup = await startSendBehavior();
       await delay(LIGHT_FEATURE_INIT_DELAY);
 
+      // Draft auto-save
+      draftSaveCleanup = await startDraftSave();
+      await delay(LIGHT_FEATURE_INIT_DELAY);
+
       // Recents hider - hide/show toggle for recent items section
       startRecentsHider();
       await delay(LIGHT_FEATURE_INIT_DELAY);
@@ -278,6 +287,10 @@ async function initializeFeatures(): Promise<void> {
     if (location.hostname === 'gemini.google.com') {
       // Initialize Mermaid rendering (lightweight)
       startMermaid();
+      await delay(LIGHT_FEATURE_INIT_DELAY);
+
+      // Initialize user message LaTeX rendering
+      startUserLatex();
       await delay(LIGHT_FEATURE_INIT_DELAY);
     }
 
@@ -474,6 +487,10 @@ function handleVisibilityChange(): void {
         if (sendBehaviorCleanup) {
           sendBehaviorCleanup();
           sendBehaviorCleanup = null;
+        }
+        if (draftSaveCleanup) {
+          draftSaveCleanup();
+          draftSaveCleanup = null;
         }
         if (forkCleanup) {
           forkCleanup();

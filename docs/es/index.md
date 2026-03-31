@@ -41,6 +41,9 @@ features:
   - icon: 💬
     title: Respuesta con Cita
     details: Selecciona para citar. Respuestas contextualizadas para una comunicación eficiente.
+  - icon: 🕐
+    title: Marca de Tiempo
+    details: Marcador temporal. Registra automáticamente la hora de envío de cada mensaje, rastrea el hilo de la conversación de un vistazo.
   - icon: ↔️
     title: Ancho del chat
     details: Amplía tu visión. Ajusta libremente el ancho del chat para una mejor experiencia de visualización.
@@ -77,13 +80,16 @@ features:
   - icon: 🔬
     title: Deep Research
     details: Abre la caja negra. Extrae procesos de pensamiento y enlaces de las sesiones de Deep Research.
+  - icon: 🔤
+    title: Tamaño de Fuente
+    details: Lee a tu manera. Ajusta el tamaño de fuente del chat para una experiencia de lectura perfecta.
+  - icon: 📌
+    title: Ocultación Automática del Panel
+    details: Modo enfoque. El panel se repliega automáticamente cuando el ratón sale, inmersión total en la conversación.
+  - icon: ⌨️
+    title: Comportamiento de Envío
+    details: Enter para nueva línea, Ctrl+Enter para enviar. Retoma el control del ritmo de tu conversación.
 ---
-
-<div class="vp-doc" style="margin: 2rem auto 0; max-width: 780px; padding: 0 16px;">
-  <div style="background: rgba(234, 179, 8, 0.12); border: 1px solid rgba(234, 179, 8, 0.6); border-radius: 8px; padding: 12px 16px;">
-    <strong>⚠️ Aviso de cambio de nombre</strong>: Debido a problemas de marcas y derechos de autor, esta extensión ha sido renombrada oficialmente a <strong>Voyager</strong>. Sin embargo, debido a la lentitud del proceso de revisión de Chrome Web Store, el cambio de nombre no fue aprobado en 7 días — está temporalmente no disponible en Chrome Web Store.
-  </div>
-</div>
 
 <div class="vp-doc" style="text-align: center; margin: 4rem auto 3rem; max-width: 780px; padding: 0 16px;">
   <h3 style="margin: 0 0 8px; font-weight: 600; font-size: 1.05em;">Cada descarga es una medida de confianza</h3>
@@ -93,8 +99,8 @@ features:
     <img src="https://img.shields.io/github/forks/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="Forks en GitHub">
     <img src="https://img.shields.io/github/v/release/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="Última versión">
     <img src="https://img.shields.io/github/downloads/Nagi-ovo/gemini-voyager/total?style=flat-square&logo=github" alt="Descargas en GitHub">
-    <img src="https://img.shields.io/chrome-web-store/users/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Usuarios Chrome Web Store">
-    <img src="https://img.shields.io/chrome-web-store/rating/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Calificación Chrome Web Store">
+    <img src="https://img.shields.io/chrome-web-store/users/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Usuarios Chrome Web Store">
+    <img src="https://img.shields.io/chrome-web-store/rating/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Calificación Chrome Web Store">
     <img src="https://img.shields.io/badge/Edge-✓-0078D7?style=flat-square&logo=microsoft-edge" alt="Edge Add-ons">
     <img src="https://img.shields.io/amo/users/gemini-voyager?style=flat-square&logo=firefox" alt="Usuarios Firefox Add-ons">
     <img src="https://img.shields.io/amo/rating/gemini-voyager?style=flat-square&logo=firefox" alt="Calificación Firefox Add-ons">
@@ -102,6 +108,12 @@ features:
   <div style="margin-top: 16px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px;">
     <a href="https://trendshift.io/repositories/16094" target="_blank"><img src="https://trendshift.io/api/badge/repositories/16094" alt="Nagi-ovo%2Fgemini-voyager | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
     <!-- <a href="https://www.producthunt.com/products/gemini-voyager?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-gemini-voyager" target="_blank" rel="noopener noreferrer"><img alt="Voyager - All-in-one Gemini suite: folders, chat export and much more | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1064704&amp;theme=light&amp;t=1768842096186"></a> -->
+  </div>
+</div>
+
+<div class="vp-doc" style="text-align: center; margin: 2.5rem auto 0; max-width: 780px; padding: 0 16px;">
+  <div style="background: var(--vp-c-warning-soft); border: 1px solid var(--vp-c-warning-1); border-radius: 8px; padding: 16px 20px;">
+    <p style="margin: 0; font-size: 0.95em; line-height: 1.6;">Voyager fue retirado anteriormente de la Chrome Web Store debido a una disputa de marca comercial, lo que provocó la pérdida de todos los usuarios y reseñas acumulados. Ahora estamos de vuelta y reconstruyendo desde cero — si encuentras útil Voyager, dejar una <strong>valoración o reseña</strong> en la página de la tienda significaría mucho para nosotros.</p>
   </div>
 </div>
 

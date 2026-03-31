@@ -19,8 +19,8 @@
     <img src="https://img.shields.io/github/forks/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="GitHub Fork">
     <img src="https://img.shields.io/github/v/release/Nagi-ovo/gemini-voyager?style=flat-square&logo=github" alt="最新バージョン">
     <img src="https://img.shields.io/github/downloads/Nagi-ovo/gemini-voyager/total?style=flat-square&logo=github" alt="GitHub ダウンロード数">
-    <img src="https://img.shields.io/chrome-web-store/users/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Chrome ユーザー数">
-    <img src="https://img.shields.io/chrome-web-store/rating/kjdpnimcnfinmilocccippmododhceol?style=flat-square&logo=google-chrome" alt="Chrome 評価">
+    <img src="https://img.shields.io/chrome-web-store/users/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Chrome ユーザー数">
+    <img src="https://img.shields.io/chrome-web-store/rating/iifacdnjakkhjjiengaffnegbndgingi?style=flat-square&logo=google-chrome" alt="Chrome 評価">
     <img src="https://img.shields.io/amo/users/gemini-voyager?style=flat-square&logo=firefox" alt="Firefox ユーザー数">
     <img src="https://img.shields.io/amo/rating/gemini-voyager?style=flat-square&logo=firefox" alt="Firefox 評価">
   </p>
@@ -58,11 +58,11 @@
   <b>🎉 トップテック KOL やコミュニティから強く推奨されています！</b>
 </p>
 
-> [!IMPORTANT]
-> **名称変更のお知らせ**：商標・著作権上の問題により、本拡張機能は正式に **Voyager** へ改名されました。ただし、Chrome ウェブストアの審査が非常に遅いため、7 日以内に名称変更が承認されず、現在 Chrome Web Store では一時的にご利用いただけない状態です。
-
 > [!NOTE]
 > もし Voyager が役に立っているなら、X、YouTube、Reddit などで共有してもらえると嬉しいです。シェアが増えるほど、このプロジェクトをより多くの人に届けられ、Gemini の体験改善にもつながります。ありがとう。
+
+> [!IMPORTANT]
+> Voyager は以前、商標に関する問題により Chrome ウェブストアから削除され、蓄積されたすべてのユーザーとレビューを失いました。現在は再公開しゼロから再構築中です。もし Voyager が役に立っていると感じたら、ストアページでの評価やレビューをいただけると大変励みになります。
 
 ---
 
@@ -123,7 +123,7 @@
 > ⚠️ 注意：プロンプト管理のみが Gemini for Enterprise をサポートしています。
 
 <div align="center">
-  <a href="https://chromewebstore.google.com/detail/kjdpnimcnfinmilocccippmododhceol?utm_source=github&utm_medium=readme&utm_campaign=organic_growth&utm_content=ja" target="_blank">
+  <a href="https://chromewebstore.google.com/detail/iifacdnjakkhjjiengaffnegbndgingi?utm_source=github&utm_medium=readme&utm_campaign=organic_growth&utm_content=ja" target="_blank">
     <img src="https://img.shields.io/badge/Chrome%20ストア-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Chrome Web Store" height="36">
   </a>
   &nbsp;&nbsp;
@@ -251,6 +251,8 @@ Voyager に貢献してくださったすべてのコントリビューターに
 - **[ChatGPT Conversation Timeline](https://github.com/Reborn14/chatgpt-conversation-timeline)** - オリジナルの ChatGPT 向け拡張機能。このプロジェクトのインスピレーションの源です。
 
 - **[Ophel Atlas](https://github.com/urzeye/ophel)** - AI チャットを整理された検索可能なドキュメントに変換するブラウザ拡張機能。アウトラインの自動生成、会話管理、プロンプトライブラリを備え、複数の AI プラットフォームに対応しています。
+
+- **[Better_Doubao](https://github.com/Rex16200513/Better_Doubao)** - Doubao を強化するブラウザ拡張機能。ナビゲーション、整理、生産性機能を向上させます。
 
 ---
 

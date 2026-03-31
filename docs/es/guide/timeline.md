@@ -14,7 +14,8 @@ Cada punto es una frase. Ese es el pulso de tu conversación.
 - **Vistazo**: Pasa el ratón por encima, ve el contenido sin saltar.
 - **Marcador**: Mantén presionado un nodo para **destacar**. Pon un marcador para tu cerebro.
 - **Niveles (Experimental)**: Clic derecho en un nodo para establecer niveles (1-3) o contraer hijos. Haz que las conversaciones ramificadas sean claras.
-- **Atajos**: Vuela con el teclado. Por defecto `j`/`k` para saltar arriba/abajo, cámbialo si quieres.
+- **Redimensionar**: Arrastra el borde interior de la línea de tiempo para ajustar su ancho.
+- **Atajos**: Vuela con el teclado. Por defecto `j`/`k` para saltar arriba/abajo, `gg`/`GG` para ir al primero/último turno.
 
 ![Navegación de Línea de Tiempo](/assets/teaser.png)
 
@@ -28,6 +29,8 @@ Cada punto es una frase. Ese es el pulso de tu conversación.
 
 - `k` - Saltar al nodo anterior
 - `j` - Saltar al nodo siguiente
+- `gg` - Saltar al primer turno
+- `GG` - Saltar al último turno
 
 ### Personalizar
 

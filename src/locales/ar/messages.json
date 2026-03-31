@@ -199,6 +199,14 @@
     "message": "تشمل النسخ الاحتياطية جميع المطالبات والمجلدات، ويتم حفظها في مجلد بختم زمني (التنسيق: backup-YYYYMMDD-HHMMSS)",
     "description": "Backup feature note"
   },
+  "pm_theme_light": {
+    "message": "التبديل إلى الوضع الفاتح",
+    "description": "Theme toggle tooltip - switch to light"
+  },
+  "pm_theme_dark": {
+    "message": "التبديل إلى الوضع الداكن",
+    "description": "Theme toggle tooltip - switch to dark"
+  },
   "extensionVersion": {
     "message": "الإصدار",
     "description": "Extension version label"
@@ -351,6 +359,18 @@
     "message": "عريض",
     "description": "Wide chat width label"
   },
+  "chatFontSize": {
+    "message": "حجم خط الدردشة",
+    "description": "Chat message font size adjustment label"
+  },
+  "chatFontSizeSmall": {
+    "message": "صغير",
+    "description": "Small font size label"
+  },
+  "chatFontSizeLarge": {
+    "message": "كبير",
+    "description": "Large font size label"
+  },
   "sidebarWidth": {
     "message": "عرض الشريط الجانبي",
     "description": "Sidebar width adjustment label"
@@ -390,6 +410,10 @@
   "formulaCopyFormatNoDollar": {
     "message": "LaTeX (بدون علامة الدولار)",
     "description": "LaTeX format option without dollar signs"
+  },
+  "formulaCopyFormatNotion": {
+    "message": "Notion ($$ تنسيق)",
+    "description": "Notion-compatible format with $$ delimiters"
   },
   "folder_filter_current_user": {
     "message": "عزل الحساب",
@@ -763,6 +787,14 @@
     "message": "العقدة التالية",
     "description": "Next timeline node shortcut label"
   },
+  "firstNode": {
+    "message": "الدور الأول",
+    "description": "First timeline node shortcut label"
+  },
+  "lastNode": {
+    "message": "الدور الأخير",
+    "description": "Last timeline node shortcut label"
+  },
   "shortcutKey": {
     "message": "مفتاح",
     "description": "Shortcut key label"
@@ -1022,6 +1054,14 @@
   "ctrlEnterSendHint": {
     "message": "اضغط {modifier}+Enter لإرسال الرسائل، Enter لإضافة سطر جديد",
     "description": "Modifier+Enter to send feature hint. {modifier} is replaced with ⌘ on macOS and Ctrl on other platforms"
+  },
+  "draftAutoSave": {
+    "message": "حفظ المسودة تلقائيًا",
+    "description": "Toggle label for input draft auto-save feature"
+  },
+  "draftAutoSaveHint": {
+    "message": "حفظ واستعادة النص غير المرسل تلقائيًا عند تحديث الصفحة أو إعادة فتح المحادثة",
+    "description": "Hint for draft auto-save feature"
   },
   "batch_delete_confirm": {
     "message": "هل أنت متأكد من أنك تريد حذف {count} محادثة؟ لا يمكن التراجع عن هذا الإجراء.",
@@ -1461,5 +1501,21 @@
   "aiOrgInstructionsBody": {
     "message": "بناءً على المحادثات وهيكل المجلدات أعلاه، يرجى إعادة تنظيمها في تسلسل هرمي منطقي للمجلدات. أخرج ملف JSON باستخدام التنسيق أدناه يمكن استيراده مباشرة إلى إضافة Gemini Voyager (استخدم استراتيجية الاستيراد \"دمج\"). احتفظ بالمجلدات المنظمة جيداً الحالية، وأنشئ مجلدات جديدة حسب الحاجة، وانقل المحادثات غير المصنفة إلى مجلدات مناسبة. يحتاج كل مجلد إلى معرف فريد (استخدم سلسلة عشوائية قصيرة)، ويجب أن تحتفظ كل محادثة بـ conversationId و url الأصليين.",
     "description": "نص التعليمات لـ AI لإنشاء هيكل مجلدات قابل للاستيراد"
+  },
+  "showMessageTimestamps": {
+    "message": "إظهار طوابع وقت الرسائل",
+    "description": "عرض طابع الوقت لكل رسالة"
+  },
+  "showMessageTimestampsHint": {
+    "message": "إظهار وقت إرسال كل رسالة",
+    "description": "تلميح لميزة طوابع الوقت"
+  },
+  "moveSectionUp": {
+    "message": "تحريك لأعلى",
+    "description": "Tooltip for moving a settings section up in popup"
+  },
+  "moveSectionDown": {
+    "message": "تحريك لأسفل",
+    "description": "Tooltip for moving a settings section down in popup"
   }
 }
