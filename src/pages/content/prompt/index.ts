@@ -949,14 +949,15 @@ export async function startPromptManager(): Promise<{ destroy: () => void }> {
         textBtn.addEventListener('click', async (e) => {
           // Don't copy when clicking expand button
           if ((e.target as HTMLElement).closest('.gv-pm-expand-btn')) return;
-          await copyText(it.text);
+          
           const inserted = insertToGemini(it.text);
-          setNotice(
-            inserted
-              ? i18n.t('pm_copied') || 'Injected into prompt area'
-              : i18n.t('pm_copied') || 'Copied',
-            'ok',
-          );
+          if (inserted) {
+            setNotice(i18n.t('pm_injected' as any) || 'Prompt Injected', 'ok');
+          } else {
+            // Fallback to copy if injection fails (e.g. input area not found)
+            await copyText(it.text);
+            setNotice(i18n.t('pm_copied') || 'Copied (Fallback)', 'ok');
+          }
         });
 
         // Add expand/collapse button
