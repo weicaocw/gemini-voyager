@@ -290,6 +290,11 @@ function copyText(text: string): Promise<void> {
 }
 
 function insertToGemini(text: string): boolean {
+  // Ensure the prompt ends with a newline so the cursor moves to the next line
+  if (!text.endsWith('\n')) {
+    text += '\n';
+  }
+
   const selectors = [
     '#prompt-textarea',
     'rich-textarea [contenteditable="true"]',
