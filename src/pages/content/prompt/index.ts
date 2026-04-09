@@ -289,6 +289,60 @@ function copyText(text: string): Promise<void> {
   }
 }
 
+function insertToGemini(text: string): boolean {
+  // Ensure the prompt ends with a newline so the cursor moves to the next line
+  if (!text.endsWith('\n')) {
+    text += '\n';
+  }
+
+  const selectors = [
+    '#prompt-textarea',
+    'rich-textarea [contenteditable="true"]',
+    '[aria-label*="Enter a prompt"]',
+    '[aria-label*="prompt"]',
+    '[contenteditable="true"]',
+  ];
+
+  for (const selector of selectors) {
+    const input = document.querySelector(selector) as HTMLElement;
+    if (input) {
+      input.focus();
+
+      if (input.tagName === 'TEXTAREA' || input.tagName === 'INPUT') {
+        const el = input as HTMLTextAreaElement;
+        const start = el.selectionStart || 0;
+        const end = el.selectionEnd || 0;
+        const value = el.value;
+        el.value = value.substring(0, start) + text + value.substring(end);
+        const newPos = start + text.length;
+        el.setSelectionRange(newPos, newPos);
+      } else {
+        // Use execCommand to insert text at cursor position.
+        // This is the most reliable way to maintain undo history and cursor position in contenteditable.
+        const success = document.execCommand('insertText', false, text);
+
+        if (!success) {
+          const selection = window.getSelection();
+          if (selection && selection.rangeCount > 0) {
+            const range = selection.getRangeAt(0);
+            range.deleteContents();
+            const textNode = document.createTextNode(text);
+            range.insertNode(textNode);
+            range.setStartAfter(textNode);
+            range.setEndAfter(textNode);
+            selection.removeAllRanges();
+            selection.addRange(range);
+          }
+        }
+      }
+
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      return true;
+    }
+  }
+  return false;
+}
+
 function computeAnchoredPosition(
   trigger: HTMLElement,
   panel: HTMLElement,
@@ -900,8 +954,15 @@ export async function startPromptManager(): Promise<{ destroy: () => void }> {
         textBtn.addEventListener('click', async (e) => {
           // Don't copy when clicking expand button
           if ((e.target as HTMLElement).closest('.gv-pm-expand-btn')) return;
-          await copyText(it.text);
-          setNotice(i18n.t('pm_copied') || 'Copied', 'ok');
+          
+          const inserted = insertToGemini(it.text);
+          if (inserted) {
+            setNotice(i18n.t('pm_injected' as any) || 'Prompt Injected', 'ok');
+          } else {
+            // Fallback to copy if injection fails (e.g. input area not found)
+            await copyText(it.text);
+            setNotice(i18n.t('pm_copied') || 'Copied (Fallback)', 'ok');
+          }
         });
 
         // Add expand/collapse button
